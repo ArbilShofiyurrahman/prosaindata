@@ -159,6 +159,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="beritaOnline.html">Scrape data dari berita online (DETIK.COM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tugas2.html">Tugas 2 : Pipeline</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tugas3.html">Tugas 3 : Data Time Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tugas4.html">NetworkxDigraph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tugas5.html">Text Summarization</a></li>
 </ul>
 
     </div>
@@ -365,6 +367,11 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#word-embedding-word2vec-cbow">Word Embedding Word2vec CBOW</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf">TF- IDF</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pencarian-nilai-k-terbaik-untuk-metode-knn">pencarian nilai k terbaik untuk metode knn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pencarian-nilai-pca-terbaik">Pencarian nilai PCA terbaik</a></li>
+</ul>
+</li>
 </ul>
 
             </nav>
@@ -412,16 +419,16 @@ document.write(`
 <span class="g g-Whitespace">    </span><span class="mi">134</span>     <span class="p">)</span>
 
 <span class="nn">/usr/local/lib/python3.9/dist-packages/google/colab/_message.py</span> in <span class="ni">blocking_request</span><span class="nt">(request_type, request, timeout_sec, parent)</span>
-<span class="g g-Whitespace">    </span><span class="mi">175</span>       <span class="n">request_type</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">parent</span><span class="p">,</span> <span class="n">expect_reply</span><span class="o">=</span><span class="kc">True</span>
-<span class="g g-Whitespace">    </span><span class="mi">176</span>   <span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">177</span>   <span class="k">return</span> <span class="n">read_reply_from_input</span><span class="p">(</span><span class="n">request_id</span><span class="p">,</span> <span class="n">timeout_sec</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">174</span>       <span class="n">request_type</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">parent</span><span class="p">,</span> <span class="n">expect_reply</span><span class="o">=</span><span class="kc">True</span>
+<span class="g g-Whitespace">    </span><span class="mi">175</span>   <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">176</span>   <span class="k">return</span> <span class="n">read_reply_from_input</span><span class="p">(</span><span class="n">request_id</span><span class="p">,</span> <span class="n">timeout_sec</span><span class="p">)</span>
 
 <span class="nn">/usr/local/lib/python3.9/dist-packages/google/colab/_message.py</span> in <span class="ni">read_reply_from_input</span><span class="nt">(message_id, timeout_sec)</span>
-<span class="g g-Whitespace">     </span><span class="mi">95</span>     <span class="n">reply</span> <span class="o">=</span> <span class="n">_read_next_input_message</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">96</span>     <span class="k">if</span> <span class="n">reply</span> <span class="o">==</span> <span class="n">_NOT_READY</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">reply</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">97</span>       <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.025</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">98</span>       <span class="k">continue</span>
-<span class="g g-Whitespace">     </span><span class="mi">99</span>     <span class="k">if</span> <span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">94</span>     <span class="n">reply</span> <span class="o">=</span> <span class="n">_read_next_input_message</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">95</span>     <span class="k">if</span> <span class="n">reply</span> <span class="o">==</span> <span class="n">_NOT_READY</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">reply</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">96</span>       <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.025</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">97</span>       <span class="k">continue</span>
+<span class="g g-Whitespace">     </span><span class="mi">98</span>     <span class="k">if</span> <span class="p">(</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -441,13 +448,13 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
 Collecting sastrawi
   Downloading Sastrawi-1.0.1-py2.py3-none-any.whl (209 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">209.7/209.7 KB</span> <span class=" -Color -Color-Red">5.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">209.7/209.7 KB</span> <span class=" -Color -Color-Red">6.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25hInstalling collected packages: sastrawi
 Successfully installed sastrawi-1.0.1
 Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
 Collecting swifter
   Downloading swifter-1.3.4.tar.gz (830 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">830.9/830.9 KB</span> <span class=" -Color -Color-Red">13.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">830.9/830.9 KB</span> <span class=" -Color -Color-Red">12.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h  Preparing metadata (setup.py) ... ?25l?25hdone
 Requirement already satisfied: pandas&gt;=1.0.0 in /usr/local/lib/python3.9/dist-packages (from swifter) (1.4.4)
 Requirement already satisfied: psutil&gt;=5.6.6 in /usr/local/lib/python3.9/dist-packages (from swifter) (5.9.4)
@@ -459,70 +466,70 @@ Requirement already satisfied: parso&gt;0.4.0 in /usr/local/lib/python3.9/dist-p
 Requirement already satisfied: bleach&gt;=3.1.1 in /usr/local/lib/python3.9/dist-packages (from swifter) (6.0.0)
 Requirement already satisfied: six&gt;=1.9.0 in /usr/local/lib/python3.9/dist-packages (from bleach&gt;=3.1.1-&gt;swifter) (1.16.0)
 Requirement already satisfied: webencodings in /usr/local/lib/python3.9/dist-packages (from bleach&gt;=3.1.1-&gt;swifter) (0.5.1)
-Requirement already satisfied: click&gt;=7.0 in /usr/local/lib/python3.9/dist-packages (from dask[dataframe]&gt;=2.10.0-&gt;swifter) (8.1.3)
-Requirement already satisfied: partd&gt;=0.3.10 in /usr/local/lib/python3.9/dist-packages (from dask[dataframe]&gt;=2.10.0-&gt;swifter) (1.3.0)
-Requirement already satisfied: fsspec&gt;=0.6.0 in /usr/local/lib/python3.9/dist-packages (from dask[dataframe]&gt;=2.10.0-&gt;swifter) (2023.3.0)
 Requirement already satisfied: packaging&gt;=20.0 in /usr/local/lib/python3.9/dist-packages (from dask[dataframe]&gt;=2.10.0-&gt;swifter) (23.0)
-Requirement already satisfied: toolz&gt;=0.8.2 in /usr/local/lib/python3.9/dist-packages (from dask[dataframe]&gt;=2.10.0-&gt;swifter) (0.12.0)
 Requirement already satisfied: pyyaml&gt;=5.3.1 in /usr/local/lib/python3.9/dist-packages (from dask[dataframe]&gt;=2.10.0-&gt;swifter) (6.0)
+Requirement already satisfied: click&gt;=7.0 in /usr/local/lib/python3.9/dist-packages (from dask[dataframe]&gt;=2.10.0-&gt;swifter) (8.1.3)
+Requirement already satisfied: fsspec&gt;=0.6.0 in /usr/local/lib/python3.9/dist-packages (from dask[dataframe]&gt;=2.10.0-&gt;swifter) (2023.3.0)
+Requirement already satisfied: toolz&gt;=0.8.2 in /usr/local/lib/python3.9/dist-packages (from dask[dataframe]&gt;=2.10.0-&gt;swifter) (0.12.0)
+Requirement already satisfied: partd&gt;=0.3.10 in /usr/local/lib/python3.9/dist-packages (from dask[dataframe]&gt;=2.10.0-&gt;swifter) (1.3.0)
 Requirement already satisfied: numpy&gt;=1.18 in /usr/local/lib/python3.9/dist-packages (from dask[dataframe]&gt;=2.10.0-&gt;swifter) (1.22.4)
-Requirement already satisfied: ipython&gt;=4.0.0 in /usr/local/lib/python3.9/dist-packages (from ipywidgets&gt;=7.0.0-&gt;swifter) (7.34.0)
-Requirement already satisfied: ipykernel&gt;=4.5.1 in /usr/local/lib/python3.9/dist-packages (from ipywidgets&gt;=7.0.0-&gt;swifter) (5.5.6)
-Requirement already satisfied: widgetsnbextension~=3.6.0 in /usr/local/lib/python3.9/dist-packages (from ipywidgets&gt;=7.0.0-&gt;swifter) (3.6.4)
-Requirement already satisfied: ipython-genutils~=0.2.0 in /usr/local/lib/python3.9/dist-packages (from ipywidgets&gt;=7.0.0-&gt;swifter) (0.2.0)
 Requirement already satisfied: jupyterlab-widgets&gt;=1.0.0 in /usr/local/lib/python3.9/dist-packages (from ipywidgets&gt;=7.0.0-&gt;swifter) (3.0.7)
 Requirement already satisfied: traitlets&gt;=4.3.1 in /usr/local/lib/python3.9/dist-packages (from ipywidgets&gt;=7.0.0-&gt;swifter) (5.7.1)
-Requirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.9/dist-packages (from pandas&gt;=1.0.0-&gt;swifter) (2022.7.1)
+Requirement already satisfied: widgetsnbextension~=3.6.0 in /usr/local/lib/python3.9/dist-packages (from ipywidgets&gt;=7.0.0-&gt;swifter) (3.6.4)
+Requirement already satisfied: ipykernel&gt;=4.5.1 in /usr/local/lib/python3.9/dist-packages (from ipywidgets&gt;=7.0.0-&gt;swifter) (5.5.6)
+Requirement already satisfied: ipython-genutils~=0.2.0 in /usr/local/lib/python3.9/dist-packages (from ipywidgets&gt;=7.0.0-&gt;swifter) (0.2.0)
+Requirement already satisfied: ipython&gt;=4.0.0 in /usr/local/lib/python3.9/dist-packages (from ipywidgets&gt;=7.0.0-&gt;swifter) (7.34.0)
 Requirement already satisfied: python-dateutil&gt;=2.8.1 in /usr/local/lib/python3.9/dist-packages (from pandas&gt;=1.0.0-&gt;swifter) (2.8.2)
-Requirement already satisfied: tornado&gt;=4.2 in /usr/local/lib/python3.9/dist-packages (from ipykernel&gt;=4.5.1-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (6.2)
+Requirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.9/dist-packages (from pandas&gt;=1.0.0-&gt;swifter) (2022.7.1)
 Requirement already satisfied: jupyter-client in /usr/local/lib/python3.9/dist-packages (from ipykernel&gt;=4.5.1-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (6.1.12)
-Requirement already satisfied: decorator in /usr/local/lib/python3.9/dist-packages (from ipython&gt;=4.0.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (4.4.2)
+Requirement already satisfied: tornado&gt;=4.2 in /usr/local/lib/python3.9/dist-packages (from ipykernel&gt;=4.5.1-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (6.2)
 Requirement already satisfied: pygments in /usr/local/lib/python3.9/dist-packages (from ipython&gt;=4.0.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (2.14.0)
-Requirement already satisfied: pickleshare in /usr/local/lib/python3.9/dist-packages (from ipython&gt;=4.0.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (0.7.5)
-Requirement already satisfied: matplotlib-inline in /usr/local/lib/python3.9/dist-packages (from ipython&gt;=4.0.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (0.1.6)
-Requirement already satisfied: pexpect&gt;4.3 in /usr/local/lib/python3.9/dist-packages (from ipython&gt;=4.0.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (4.8.0)
 Requirement already satisfied: backcall in /usr/local/lib/python3.9/dist-packages (from ipython&gt;=4.0.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (0.2.0)
+Requirement already satisfied: setuptools&gt;=18.5 in /usr/local/lib/python3.9/dist-packages (from ipython&gt;=4.0.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (67.6.1)
+Requirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,&lt;3.1.0,&gt;=2.0.0 in /usr/local/lib/python3.9/dist-packages (from ipython&gt;=4.0.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (3.0.38)
+Requirement already satisfied: matplotlib-inline in /usr/local/lib/python3.9/dist-packages (from ipython&gt;=4.0.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (0.1.6)
+Requirement already satisfied: decorator in /usr/local/lib/python3.9/dist-packages (from ipython&gt;=4.0.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (4.4.2)
 Collecting jedi&gt;=0.16
   Downloading jedi-0.18.2-py2.py3-none-any.whl (1.6 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.6/1.6 MB</span> <span class=" -Color -Color-Red">50.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,&lt;3.1.0,&gt;=2.0.0 in /usr/local/lib/python3.9/dist-packages (from ipython&gt;=4.0.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (3.0.38)
-Requirement already satisfied: setuptools&gt;=18.5 in /usr/local/lib/python3.9/dist-packages (from ipython&gt;=4.0.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (67.6.1)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.6/1.6 MB</span> <span class=" -Color -Color-Red">50.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25hRequirement already satisfied: pickleshare in /usr/local/lib/python3.9/dist-packages (from ipython&gt;=4.0.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (0.7.5)
+Requirement already satisfied: pexpect&gt;4.3 in /usr/local/lib/python3.9/dist-packages (from ipython&gt;=4.0.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (4.8.0)
 Requirement already satisfied: locket in /usr/local/lib/python3.9/dist-packages (from partd&gt;=0.3.10-&gt;dask[dataframe]&gt;=2.10.0-&gt;swifter) (1.0.0)
 Requirement already satisfied: notebook&gt;=4.4.1 in /usr/local/lib/python3.9/dist-packages (from widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (6.4.8)
-Requirement already satisfied: terminado&gt;=0.8.3 in /usr/local/lib/python3.9/dist-packages (from notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (0.17.1)
-Requirement already satisfied: pyzmq&gt;=17 in /usr/local/lib/python3.9/dist-packages (from notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (23.2.1)
-Requirement already satisfied: nbformat in /usr/local/lib/python3.9/dist-packages (from notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (5.8.0)
-Requirement already satisfied: nbconvert in /usr/local/lib/python3.9/dist-packages (from notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (6.5.4)
-Requirement already satisfied: nest-asyncio&gt;=1.5 in /usr/local/lib/python3.9/dist-packages (from notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (1.5.6)
-Requirement already satisfied: jupyter-core&gt;=4.6.1 in /usr/local/lib/python3.9/dist-packages (from notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (5.3.0)
 Requirement already satisfied: prometheus-client in /usr/local/lib/python3.9/dist-packages (from notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (0.16.0)
 Requirement already satisfied: argon2-cffi in /usr/local/lib/python3.9/dist-packages (from notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (21.3.0)
+Requirement already satisfied: jupyter-core&gt;=4.6.1 in /usr/local/lib/python3.9/dist-packages (from notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (5.3.0)
+Requirement already satisfied: nest-asyncio&gt;=1.5 in /usr/local/lib/python3.9/dist-packages (from notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (1.5.6)
+Requirement already satisfied: pyzmq&gt;=17 in /usr/local/lib/python3.9/dist-packages (from notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (23.2.1)
 Requirement already satisfied: jinja2 in /usr/local/lib/python3.9/dist-packages (from notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (3.1.2)
+Requirement already satisfied: nbconvert in /usr/local/lib/python3.9/dist-packages (from notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (6.5.4)
+Requirement already satisfied: terminado&gt;=0.8.3 in /usr/local/lib/python3.9/dist-packages (from notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (0.17.1)
+Requirement already satisfied: nbformat in /usr/local/lib/python3.9/dist-packages (from notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (5.8.0)
 Requirement already satisfied: Send2Trash&gt;=1.8.0 in /usr/local/lib/python3.9/dist-packages (from notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (1.8.0)
 Requirement already satisfied: ptyprocess&gt;=0.5 in /usr/local/lib/python3.9/dist-packages (from pexpect&gt;4.3-&gt;ipython&gt;=4.0.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (0.7.0)
 Requirement already satisfied: wcwidth in /usr/local/lib/python3.9/dist-packages (from prompt-toolkit!=3.0.0,!=3.0.1,&lt;3.1.0,&gt;=2.0.0-&gt;ipython&gt;=4.0.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (0.2.6)
 Requirement already satisfied: platformdirs&gt;=2.5 in /usr/local/lib/python3.9/dist-packages (from jupyter-core&gt;=4.6.1-&gt;notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (3.2.0)
 Requirement already satisfied: argon2-cffi-bindings in /usr/local/lib/python3.9/dist-packages (from argon2-cffi-&gt;notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (21.2.0)
 Requirement already satisfied: MarkupSafe&gt;=2.0 in /usr/local/lib/python3.9/dist-packages (from jinja2-&gt;notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (2.1.2)
-Requirement already satisfied: mistune&lt;2,&gt;=0.8.1 in /usr/local/lib/python3.9/dist-packages (from nbconvert-&gt;notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (0.8.4)
-Requirement already satisfied: beautifulsoup4 in /usr/local/lib/python3.9/dist-packages (from nbconvert-&gt;notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (4.11.2)
-Requirement already satisfied: jupyterlab-pygments in /usr/local/lib/python3.9/dist-packages (from nbconvert-&gt;notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (0.2.2)
-Requirement already satisfied: defusedxml in /usr/local/lib/python3.9/dist-packages (from nbconvert-&gt;notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (0.7.1)
-Requirement already satisfied: nbclient&gt;=0.5.0 in /usr/local/lib/python3.9/dist-packages (from nbconvert-&gt;notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (0.7.2)
-Requirement already satisfied: entrypoints&gt;=0.2.2 in /usr/local/lib/python3.9/dist-packages (from nbconvert-&gt;notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (0.4)
 Requirement already satisfied: pandocfilters&gt;=1.4.1 in /usr/local/lib/python3.9/dist-packages (from nbconvert-&gt;notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (1.5.0)
-Requirement already satisfied: lxml in /usr/local/lib/python3.9/dist-packages (from nbconvert-&gt;notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (4.9.2)
 Requirement already satisfied: tinycss2 in /usr/local/lib/python3.9/dist-packages (from nbconvert-&gt;notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (1.2.1)
-Requirement already satisfied: jsonschema&gt;=2.6 in /usr/local/lib/python3.9/dist-packages (from nbformat-&gt;notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (4.3.3)
+Requirement already satisfied: defusedxml in /usr/local/lib/python3.9/dist-packages (from nbconvert-&gt;notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (0.7.1)
+Requirement already satisfied: jupyterlab-pygments in /usr/local/lib/python3.9/dist-packages (from nbconvert-&gt;notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (0.2.2)
+Requirement already satisfied: lxml in /usr/local/lib/python3.9/dist-packages (from nbconvert-&gt;notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (4.9.2)
+Requirement already satisfied: entrypoints&gt;=0.2.2 in /usr/local/lib/python3.9/dist-packages (from nbconvert-&gt;notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (0.4)
+Requirement already satisfied: beautifulsoup4 in /usr/local/lib/python3.9/dist-packages (from nbconvert-&gt;notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (4.11.2)
+Requirement already satisfied: nbclient&gt;=0.5.0 in /usr/local/lib/python3.9/dist-packages (from nbconvert-&gt;notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (0.7.3)
+Requirement already satisfied: mistune&lt;2,&gt;=0.8.1 in /usr/local/lib/python3.9/dist-packages (from nbconvert-&gt;notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (0.8.4)
 Requirement already satisfied: fastjsonschema in /usr/local/lib/python3.9/dist-packages (from nbformat-&gt;notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (2.16.3)
-Requirement already satisfied: attrs&gt;=17.4.0 in /usr/local/lib/python3.9/dist-packages (from jsonschema&gt;=2.6-&gt;nbformat-&gt;notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (22.2.0)
+Requirement already satisfied: jsonschema&gt;=2.6 in /usr/local/lib/python3.9/dist-packages (from nbformat-&gt;notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (4.3.3)
 Requirement already satisfied: pyrsistent!=0.17.0,!=0.17.1,!=0.17.2,&gt;=0.14.0 in /usr/local/lib/python3.9/dist-packages (from jsonschema&gt;=2.6-&gt;nbformat-&gt;notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (0.19.3)
+Requirement already satisfied: attrs&gt;=17.4.0 in /usr/local/lib/python3.9/dist-packages (from jsonschema&gt;=2.6-&gt;nbformat-&gt;notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (22.2.0)
 Requirement already satisfied: cffi&gt;=1.0.1 in /usr/local/lib/python3.9/dist-packages (from argon2-cffi-bindings-&gt;argon2-cffi-&gt;notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (1.15.1)
 Requirement already satisfied: soupsieve&gt;1.2 in /usr/local/lib/python3.9/dist-packages (from beautifulsoup4-&gt;nbconvert-&gt;notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (2.4)
 Requirement already satisfied: pycparser in /usr/local/lib/python3.9/dist-packages (from cffi&gt;=1.0.1-&gt;argon2-cffi-bindings-&gt;argon2-cffi-&gt;notebook&gt;=4.4.1-&gt;widgetsnbextension~=3.6.0-&gt;ipywidgets&gt;=7.0.0-&gt;swifter) (2.21)
 Building wheels for collected packages: swifter
   Building wheel for swifter (setup.py) ... ?25l?25hdone
-  Created wheel for swifter: filename=swifter-1.3.4-py3-none-any.whl size=16321 sha256=d94835665dab676ca7c3ce9de55fa6513fd3ce9d271a4e80cebd8940b6f90b08
+  Created wheel for swifter: filename=swifter-1.3.4-py3-none-any.whl size=16321 sha256=316e60d7269805e7f189665e1cae284008f70ea6b0f598fcf318c5e7d99cb05b
   Stored in directory: /root/.cache/pip/wheels/2b/5e/f2/3931524f702ffd03309e96d35ee2fbf9c61c27377511ee8d4c
 Successfully built swifter
 Installing collected packages: jedi, swifter
@@ -530,8 +537,8 @@ Successfully installed jedi-0.18.2 swifter-1.3.4
 Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
 Requirement already satisfied: gensim in /usr/local/lib/python3.9/dist-packages (4.3.1)
 Requirement already satisfied: smart-open&gt;=1.8.1 in /usr/local/lib/python3.9/dist-packages (from gensim) (6.3.0)
-Requirement already satisfied: numpy&gt;=1.18.5 in /usr/local/lib/python3.9/dist-packages (from gensim) (1.22.4)
 Requirement already satisfied: scipy&gt;=1.7.0 in /usr/local/lib/python3.9/dist-packages (from gensim) (1.10.1)
+Requirement already satisfied: numpy&gt;=1.18.5 in /usr/local/lib/python3.9/dist-packages (from gensim) (1.22.4)
 </pre></div>
 </div>
 </div>
@@ -558,7 +565,7 @@ Requirement already satisfied: scipy&gt;=1.7.0 in /usr/local/lib/python3.9/dist-
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-2722249d-2c86-4e1b-a3f1-230f2e3d3884">
+  <div id="df-ee9f66bb-55ab-4997-ab57-d9a51f2e2052">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -629,7 +636,7 @@ Requirement already satisfied: scipy&gt;=1.7.0 in /usr/local/lib/python3.9/dist-
   </tbody>
 </table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-2722249d-2c86-4e1b-a3f1-230f2e3d3884')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-ee9f66bb-55ab-4997-ab57-d9a51f2e2052')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
         
@@ -680,12 +687,12 @@ Requirement already satisfied: scipy&gt;=1.7.0 in /usr/local/lib/python3.9/dist-
 
       <script>
         const buttonEl =
-          document.querySelector('#df-2722249d-2c86-4e1b-a3f1-230f2e3d3884 button.colab-df-convert');
+          document.querySelector('#df-ee9f66bb-55ab-4997-ab57-d9a51f2e2052 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-2722249d-2c86-4e1b-a3f1-230f2e3d3884');
+          const element = document.querySelector('#df-ee9f66bb-55ab-4997-ab57-d9a51f2e2052');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -1191,7 +1198,3041 @@ Name: stopwords_removal_final, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>grafdapat : grafdapat
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Black -Color-Bold-Black-BGYellow">Output streaming akan dipotong hingga 5000 baris terakhir.</span>
+pertemanan : teman
+memajukan : maju
+berupaya : upaya
+daerahnya : daerah
+sensor : sensor
+positioning : positioning
+kompas : kompas
+akselerometer : akselerometer
+marker : marker
+ikon : ikon
+petunjuk : tunjuk
+menstabilkan : stabil
+orientasi : orientasi
+ubah : ubah
+mengunjungi : unjung
+perkembangannya : kembang
+caf : caf
+buku : buku
+advertising : advertising
+markerless : markerless
+vuforia : vuforia
+berintegrasi : integrasi
+unity : unity
+sonnen : sonnen
+cafe : cafe
+berinteraksi : interaksi
+menimbulkan : timbul
+texture : texture
+terapkan : terap
+hids : hids
+host : host
+ids : ids
+perlengkapan : lengkap
+paket : paket
+peringatan : ingat
+mencurigakan : curiga
+ddos : ddos
+dos : dos
+pertahanan : tahan
+dijebol : jebol
+dibanjiri : banjir
+functionality : functionality
+icmp : icmp
+flood : flood
+tcp : tcp
+udp : udp
+lambatnya : lambat
+false : false
+alarm : alarm
+principle : principle
+pereduksi : reduksi
+proposal : proposal
+seminar : seminar
+mengestraksi : mengestraksi
+expectation : expectation
+maximization : maximization
+area : area
+parkir : parkir
+gedung : gedung
+pertokoan : toko
+petugas : tugas
+pintu : pintu
+mencatat : catat
+karcis : karcis
+dicatat : catat
+pencatat : catat
+connected : connected
+pendapatnya : dapat
+mengumpulkan : kumpul
+pendapat : dapat
+persebaran : sebar
+mengklasifikasikannya : klasifikasi
+menampilkannya : tampil
+realtime : realtime
+menjadikannya : jadi
+memeberikan : memeberikan
+bertema : tema
+partai : partai
+lintang : lintang
+bujurnya : bujur
+searching : searching
+bus : bus
+dinosaurus : dinosaurus
+gajah : gajah
+gunung : gunung
+kuda : kuda
+mawar : mawar
+pantai : pantai
+termirip : mirip
+teratur : atur
+pemesanan : mesan
+rop : rop
+re : re
+levelnya : level
+aman : aman
+terkini : kini
+lead : lead
+lebel : lebel
+access : access
+control : control
+nac : nac
+diperbolehkan : boleh
+berusaha : usaha
+mengijinkan : mengijinkan
+dicek : cek
+username : username
+penyalahguanaan : penyalahguanaan
+diluar : luar
+tambahan : tambah
+token : token
+login : login
+generate : generate
+md : md
+stamp : stamp
+kompter : kompter
+ijin : ijin
+one : one
+otp : otp
+rancang : rancang
+penyelenggaraan : selenggara
+formal : formal
+mengarahkan : arah
+akademiknya : akademik
+ilmu : ilmu
+dunn : dunn
+nem : nem
+fisika : fisika
+kimia : kimia
+geografi : geografi
+sosiologi : sosiologi
+ppkn : ppkn
+agama : agama
+conversation : conversation
+penjaskes : penjaskes
+memetakkan : petak
+intensif : intensif
+smk : smk
+satuan : satu
+keahlian : ahli
+dipadukan : padu
+constraint : constraint
+satisfaction : satisfaction
+problem : problem
+kromosom : kromosom
+reproduksi : reproduksi
+pc : pc
+pm : pm
+bottom : bottom
+hat : hat
+dilasi : dilasi
+opening : opening
+pembuluh : buluh
+retina : retina
+fundus : fundus
+rgb : rgb
+green : green
+channel : channel
+saturasi : saturasi
+contrast : contrast
+limited : limited
+clahe : clahe
+kontras : kontras
+memperjelas : jelas
+binerisasi : biner
+retinal : retinal
+for : for
+vessel : vessel
+drive : drive
+blog : blog
+penyumbang : sumbang
+notabene : notabene
+blogger : blogger
+lurus : lurus
+pemilahan : pilah
+menjelajahi : jajah
+expression : expression
+daftar : daftar
+niche : niche
+tips : tips
+trik : trik
+kuliner : kuliner
+nusantara : nusantara
+sepak : sepak
+fashion : fashion
+wanita : wanita
+blogging : blogging
+bertopik : topik
+spesifik : spesifik
+mengaplikasikan : aplikasi
+mengujikan : uji
+lenght : lenght
+foto : foto
+diam : diam
+tawa : tawa
+leght : leght
+penyelesaian : selesai
+macet : macet
+bank : bank
+debitur : debitur
+regresi : regresi
+logistik : logistik
+menentukannya : tentu
+penghasilan : hasil
+perbulan : bulan
+pinjaman : pinjam
+jaminan : jamin
+tabungan : tabung
+margin : margin
+bprs : bprs
+ordinal : ordinal
+filesystem : filesystem
+linux : linux
+menyimpan : simpan
+plain : plain
+text : text
+aksesnya : akses
+ditingkatkan : tingkat
+cipher : cipher
+fuse : fuse
+blowfish : blowfish
+ext : ext
+hard : hard
+dituliskan : tulis
+ukurannya : ukur
+melindungi : lindung
+prose : prose
+perpaduan : padu
+grafik : grafik
+sound : sound
+perantara : antara
+pembelajar : ajar
+sorting : sorting
+diputar : putar
+pengantar : antar
+inteface : inteface
+insertion : insertion
+merge : merge
+penangkap : tangkap
+memfungsikan : fungsi
+pengukur : ukur
+dikalibrasi : kalibrasi
+stereo : stereo
+terkalibrasi : kalibrasi
+diilhami : ilham
+pemerograman : pemerograman
+emgucv : emgucv
+disparitas : disparitas
+pandang : pandang
+disparity : disparity
+baseline : baseline
+pemisah : pisah
+focal : focal
+estimasi : estimasi
+dikhususkan : khusus
+frontal : frontal
+intensitas : intensitas
+ruangan : ruang
+kecilnya : kecil
+pengkur : kur
+ekonomiskatakunci : ekonomiskatakunci
+visison : visison
+like : like
+mengoperasikan : operasi
+bertopengkan : topeng
+antarmuka : antarmuka
+visi : visi
+bersentuhan : sentuh
+keras : keras
+mouse : mouse
+pointer : pointer
+keyboard : keyboard
+next : next
+previous : previous
+slide : slide
+microsoft : microsoft
+menangkap : tangkap
+hand : hand
+gesture : gesture
+kulit : kulit
+ycrcb : ycrcb
+olehpara : olehpara
+meluasnya : luas
+teknikidentifikasi : teknikidentifikasi
+sebagaiobyek : sebagaiobyek
+sidikjari : sidikjari
+tahappertama : tahappertama
+darimasing : darimasing
+penyatuan : satu
+bobotpca : bobotpca
+disatukan : satu
+fusion : fusion
+disebutmatrik : disebutmatrik
+manhattandistance : manhattandistance
+menyimpulkanbahwa : menyimpulkanbahwa
+pcadan : pcadan
+lisan : lisan
+mimik : mimik
+desktop : desktop
+inisialisasi : inisial
+crop : crop
+resize : resize
+cocokan : cocok
+shape : shape
+kuantisasi : kuantisasi
+jave : jave
+ektraksi : ektraksi
+akar : akar
+kuadratnya : kuadrat
+ptn : ptn
+uang : uang
+ukt : ukt
+besaran : besar
+dibayarkan : bayar
+ekonominya : ekonomi
+rp : rp
+pbb : pbb
+pdam : pdam
+listrik : listrik
+numerik : numerik
+kategorik : kategorik
+uktdengan : uktdengan
+post : post
+remedial : remedial
+pembelajan : bajan
+direkomendasikan : rekomendasi
+fp : fp
+yatu : yatu
+harian : hari
+market : market
+dibelanjakan : belanja
+menyerupai : rupa
+tic : tic
+tac : tac
+toe : toe
+xox : xox
+menghadirkan : hadir
+pintar : pintar
+resoulusi : resoulusi
+memperkuat : kuat
+robot : robot
+medan : medan
+berbahaya : bahaya
+penjinak : jinak
+bom : bom
+pemadam : madam
+diadakannya : ada
+kontes : kontes
+krpai : krpai
+dukungan : dukung
+mengembangkannya : kembang
+ultrasonic : ultrasonic
+uvtron : uvtron
+photodioda : photodioda
+kontroler : kontroler
+kanan : kanan
+outputnya : outputnya
+kiri : kiri
+kontroller : kontroller
+memadamkan : madam
+responsif : responsif
+terhindar : hindar
+halangan : halang
+pergerakannya : gera
+tunneling : tunneling
+ipv : ipv
+tunnel : tunnel
+over : over
+qos : qos
+upload : upload
+delay : delay
+troughput : troughput
+jitter : jitter
+seirver : seirver
+analyzer : analyzer
+wireshark : wireshark
+lab : lab
+terpadu : padu
+ukm : ukm
+perseorangan : orang
+tangga : tangga
+memproduksi : produksi
+diperniagakan : niaga
+komersial : komersial
+pemasaran : pasar
+pemusatan : pusat
+pengolahaan : pengolahaan
+pengadministrasian : administrasi
+pemprosesan : pemprosesan
+dimplementasikan : dimplementasikan
+menaungi : taung
+ikm : ikm
+regional : regional
+ketatnya : ketat
+usahanya : usaha
+medoid : medoid
+terjaga : jaga
+kelestarianya : kelestarianya
+globalisassi : globalisassi
+urbanisasi : urbanisasi
+asimilasi : asimilasi
+akulturasi : akulturasi
+terbentuknya : bentuk
+gaul : gaul
+pemuda : pemuda
+munculnya : muncul
+mewajibkan : wajib
+kelestariannya : lestari
+penyebaran : sebar
+baikkata : baikkata
+vlan : vlan
+memecah : pecah
+segmen : segmen
+memperkecil : kecil
+broadcast : broadcast
+subnet : subnet
+lan : lan
+trunking : trunking
+trunk : trunk
+mbps : mbps
+bebrapa : bebrapa
+paramter : paramter
+jitternya : jitternya
+trhoughput : trhoughput
+jaingan : jaingan
+terbebani : beban
+trafik : trafik
+packet : packet
+mewah : mewah
+menikmati : nikmat
+pemutar : putar
+musik : musik
+murah : murah
+menantang : tantang
+gasing : gasing
+gampang : gampang
+aisk : aisk
+membosankan : bosan
+enggan : enggan
+multiplayer : multiplayer
+melawan : lawan
+perantaranya : antara
+walikelas : walikelas
+tahunan : tahun
+segenap : segenap
+wali : wali
+penyerahan : serah
+membatasi : batas
+tugasnya : tugas
+pengumpulkan : kumpul
+vietspider : vietspider
+manusiayang : manusiayang
+mewujudkan : wujud
+pekerjaannya : kerja
+penyeleksian : seleksi
+human : human
+dipekerjakan : kerja
+hrd : hrd
+subyektif : subyektif
+pelamar : lamar
+prospek : prospek
+kedepannya : depan
+sisstem : sisstem
+simpul : simpul
+dipantau : pantau
+gaji : gaji
+terprogram : program
+intruksi : intruksi
+japanese : japanese
+female : female
+facial : facial
+membaginya : bagi
+dikalikan : kali
+berlaku : laku
+perparkiran : parkir
+tanda : tanda
+bi : bi
+sa : sa
+memfokuskan : fokus
+menggunnakan : menggunnakan
+menebalkan : tebal
+menipiskan : nipis
+ditandai : tanda
+dangan : dang
+persegi : persegi
+sukses : sukses
+line : line
+profile : profile
+projection : projection
+digitalisasi : digitalisasi
+template : template
+profil : profil
+pemotongan : potong
+disamakan : sama
+diabetic : diabetic
+retinopathy : retinopathy
+y : y
+variansi : variansi
+mask : mask
+mengkonvolusi : konvolusi
+overlapping : overlapping
+field : field
+groundtruth : groundtruth
+images : images
+kebutaan : buta
+cairan : cair
+pengecekkan : ecek
+exudates : exudates
+mengecek : ecek
+pass : pass
+glpf : glpf
+penajaman : najam
+ahe : ahe
+thruth : thruth
+mensegmentasi : segmentasi
+cluter : cluter
+isasi : isasi
+peng : peng
+an : an
+diduga : duga
+movielens : movielens
+org : org
+stop : stop
+running : running
+manakah : mana
+latih : latih
+absolut : absolut
+kekayaan : kaya
+terkenal : kenal
+manca : manca
+perlombaan : lomba
+pacuan : pacu
+kereta : kereta
+joki : joki
+mengendalikan : kendali
+diiringi : iring
+lagu : lagu
+saronen : saronen
+berlari : lari
+energik : energik
+dikendalikan : kendali
+memecut : pecut
+subway : subway
+surfers : surfers
+arcade : arcade
+action : action
+grafis : grafis
+menghindari : hindar
+kejaran : kejar
+sakera : sakera
+behaviour : behaviour
+kebiasaan : biasa
+main : main
+mengenalkan : kenal
+inovasi : inovasi
+panca : panca
+pengelihatan : lihat
+teridentifikasi : identifikasi
+indikasi : indikasi
+ketidaknormalan : ketidaknormalan
+kapiler : kapiler
+red : red
+morphological : morphological
+skeleton : skeleton
+pruning : pruning
+prunning : prunning
+sekeleton : sekeleton
+maraknya : marak
+sampainya : sampai
+firt : firt
+menempatkan : tempat
+gigi : gigi
+pergi : pergi
+pencegahan : cegah
+kronis : kronis
+giginya : gigi
+parah : parah
+konsultasi : konsultasi
+synonym : synonym
+replacement : replacement
+faq : faq
+penerapannya : terap
+versi : versi
+konstanta : konstanta
+prime : prime
+kompetitif : kompetitif
+periodik : periodik
+terarah : arah
+financial : financial
+perspective : perspective
+balance : balance
+nusa : nusa
+indah : indah
+hmf : hmf
+hj : hj
+unyil : unyil
+al : al
+madani : madani
+lemah : lemah
+menemui : temu
+ditemui : temu
+bergeser : geser
+mengefisiensi : efisiensi
+siswanya : siswa
+mencetak : cetak
+tampil : tampil
+lamongan : lamongan
+mengancam : ancam
+ulah : ulah
+keaslian : asli
+suricata : suricata
+penyusup : susup
+dikoneksikan : koneksi
+gui : gui
+webadmin : webadmin
+dialog : dialog
+bunyi : bunyi
+memblokir : blokir
+terputus : putus
+pertukarannya : tukar
+memanfaatkannya : manfaat
+pertukaran : tukar
+interchange : interchange
+edi : edi
+mempromosikan : promosi
+pastinya : pasti
+popularitas : popularitas
+skripsi : skripsi
+sqlite : sqlite
+pengerjaan : kerja
+sesungguhnya : sungguh
+section : section
+menyehatkan : sehat
+mengidap : idap
+alasannnya : alasannnya
+membakar : bakar
+hobi : hobi
+aktifitas : aktifitas
+penyimpannya : simpan
+burn : burn
+calory : calory
+pembakaran : bakar
+mets : mets
+infrastuktur : infrastuktur
+tol : tol
+jembatan : jembatan
+layang : layang
+disebab : sebab
+kewaspadaan : waspada
+mengantuk : antuk
+pelanggaran : langgar
+mengkonsumsi : konsumsi
+alkohol : alkohol
+kecelakan : cela
+merugikan : rugi
+pengendara : kendara
+membahayakan : bahaya
+warning : warning
+speed : speed
+sif : sif
+keanggotaan : anggota
+membership : membership
+navigasi : navigasi
+satelit : satelit
+pemanfaatannya : manfaat
+diberbagai : bagai
+pemafaatan : pemafaatan
+menganggap : anggap
+traveling : traveling
+membuka : buka
+wawasan : wawas
+ketakutan : takut
+tahunya : tahu
+dijangkau : jangkau
+bingung : bingung
+perjalanannya : jalan
+disemua : semua
+tracker : tracker
+pelacak : lacak
+peralanan : peralanan
+perekaman : rekam
+rentetan : rentet
+latitude : latitude
+longitude : longitude
+pemograman : pemograman
+adt : adt
+bundle : bundle
+outdoor : outdoor
+backpacking : backpacking
+communication : communication
+ekspektasi : ekspektasi
+makaing : makaing
+fmcdm : fmcdm
+peringkatan : peringkat
+kualifikasi : kualifikasi
+baca : baca
+dikalangan : kalang
+collaborative : collaborative
+mae : mae
+merating : merating
+ct : ct
+pro : pro
+diperuntukkan : untuk
+membayar : bayar
+sulitnya : sulit
+ratio : ratio
+prepruning : prepruning
+kalsifikasi : kalsifikasi
+pendaftar : daftar
+penerus : terus
+membanggakan : bangga
+segudang : gudang
+diraih : raih
+sedini : din
+menggunakanya : menggunakanya
+kemandirian : mandiri
+interakif : interakif
+terhibur : hibur
+alena : alena
+ajher : ajher
+noles : noles
+kanak : kanak
+disisipkan : sisip
+planning : planning
+terorganisir : organisir
+blueprint : blueprint
+accounting : accounting
+fa : fa
+zachman : zachman
+zf : zf
+artifak : artifak
+penerapanya : apa
+prespektif : prespektif
+it : it
+planner : planner
+owner : owner
+designer : designer
+builder : builder
+implementer : implementer
+participant : participant
+abstraksi : abstraksi
+what : what
+how : how
+where : where
+who : who
+when : when
+why : why
+uml : uml
+deskripsi : deskripsi
+driven : driven
+berkualitas : kualitas
+iglas : iglas
+openerp : openerp
+asset : asset
+eam : eam
+fixed : fixed
+diadaptasi : adaptasi
+arsitek : arsitek
+keenam : enam
+sunfisherp : sunfisherp
+dikenakan : kena
+praktikum : praktikum
+unit : unit
+habis : habis
+pakai : pakai
+manajerial : manajerial
+institusi : institusi
+kemahasiswaan : mahasiswa
+subsidi : subsidi
+sumbangan : sumbang
+dipilihnya : pilih
+programminginterface : programminginterface
+diformat : format
+gif : gif
+wav : wav
+menebak : tebak
+tebakan : tebak
+kefasihan : fasih
+abstrakdalam : abstrakdalam
+hrm : hrm
+inventory : inventory
+managemnt : managemnt
+im : im
+sebanding : banding
+console : console
+lainya : lai
+menitik : titik
+beratkan : rat
+variatif : variatif
+pengurangan : kurang
+fun : fun
+race : race
+accelerometer : accelerometer
+sd : sd
+enterprice : enterprice
+pemodelannya : model
+digambarkan : gambar
+notasi : notasi
+konseptual : konseptual
+pendeskripsian : deskripsi
+unified : unified
+modeling : modeling
+cakupan : cakup
+kompetisi : kompetisi
+rumusan : rumus
+stratgi : stratgi
+dominasi : dominasi
+parsial : parsial
+sensitif : sensitif
+sitem : sitem
+perusahan : usah
+diselesaikan : selesai
+memenangkan : menang
+keilmuan : ilmu
+rekursive : rekursive
+dfs : dfs
+tercepat : cepat
+penghambat : hambat
+recursive : recursive
+peninjauan : tinjau
+penderitanya : derita
+membesar : besar
+kelainan : lain
+membersihkan : bersih
+kerap : kerap
+pengontrol : kontrol
+arus : arus
+perempatan : empat
+kendali : kendali
+melewati : lewat
+sugeno : sugeno
+menyala : nyala
+antrian : antri
+berlawanan : lawan
+kaidah : kaidah
+if : if
+then : then
+borland : borland
+delphi : delphi
+pengerjaannya : kerja
+berlatar : latar
+ramayana : ramayana
+gameplaynya : gameplaynya
+battle : battle
+pemberitahuan : pemberitahuan
+bertemu : temu
+musuh : musuh
+giliran : gilir
+disembunyikan : sembunyi
+dibalik : balik
+batu : batu
+semak : semak
+penyerangan : serang
+atb : atb
+setelahnya : telah
+nol : nol
+bejalan : bejalan
+dimasyarakat : masyarakat
+keamaan : ama
+penerbangan : terbang
+kependudukan : duduk
+menghasilan : hasil
+menyimpulkan : simpul
+menyelengarakan : menyelengarakan
+diploma : diploma
+tpa : tpa
+tpd : tpd
+akreditasi : akreditasi
+merekapitulasi : rekapitulasi
+penggerak : gerak
+perekonomian : ekonomi
+produktifitas : produktifitas
+ga : ga
+kmeans : kmeans
+pusatnya : pusat
+dioptimasi : dioptimasi
+sum : sum
+within : within
+variation : variation
+between : between
+abstrakobat : abstrakobat
+syarifah : syarifah
+ambami : ambami
+rato : rato
+ebu : ebu
+nguyen : nguyen
+widrow : widrow
+aclam : aclam
+kaplet : kaplet
+btl : btl
+seaquare : seaquare
+estetika : estetika
+berpakaian : pakai
+tubuhnya : tubuh
+meteran : meter
+pengklasifikasi : klasifikasi
+tresholding : tresholding
+otsu : otsu
+lebar : lebar
+berformat : format
+bmp : bmp
+ambang : ambang
+cetak : cetak
+istilah : istilah
+adat : adat
+keaneka : aneka
+ragam : ragam
+wisatawan : wisatawan
+berkunjung : kunjung
+ginggerbread : ginggerbread
+abstrakpencatatan : abstrakpencatatan
+manajer : manajer
+menganalisisnya : analis
+depot : depot
+pertamina : pertamina
+camplong : camplong
+mengidentifikasikan : identifikasi
+premium : premium
+solar : solar
+meminimumkan : minimum
+pengclusteran : pengclusteran
+keanggotaannya : anggota
+dievaluasi : evaluasi
+squared : squared
+diaman : diam
+niai : nia
+pengelompokkan : kelompok
+warung : warung
+warnet : warnet
+hotspot : hotspot
+wifi : wifi
+berbayar : bayar
+mikrotik : mikrotik
+mini : mini
+isp : isp
+via : via
+router : router
+remote : remote
+routeros : routeros
+dipermudah : mudah
+mendasar : dasar
+seluk : seluk
+beluk : beluk
+food : food
+vulnerability : vulnerability
+fsva : fsva
+kerawanan : rawan
+pembaharuan : baharu
+insecurity : insecurity
+atlas : atlas
+fia : fia
+rawan : rawan
+alokasi : alokasi
+dirotasi : rotasi
+varimax : varimax
+menginterpretasikan : interpretasi
+membuatnya : buat
+composite : composite
+cfsi : cfsi
+diprioritaskan : prioritas
+ditanggulangi : tanggulang
+suramadu : suramadu
+mudahnya : mudah
+buatlah : buat
+kunjungan : kunjung
+ant : ant
+colony : colony
+buatnya : buat
+kunjung : kunjung
+saran : saran
+riskedas : riskedas
+survei : survei
+validation : validation
+hasilkan : hasil
+ibtidaiyah : ibtidaiyah
+ketelitian : teliti
+kehati : hati
+hatian : hati
+tampung : tampung
+koordinator : koordinator
+terkomputerisasi : komputerisasi
+hirearchy : hirearchy
+kesekolah : seko
+usiakata : usiakata
+abstrakkondisi : abstrakkondisi
+bermunculan : muncul
+pasca : pasca
+selesainya : selesai
+implementasikan : implementasi
+penggunaannya : guna
+operasikan : operasi
+diseleksi : seleksi
+ambunten : ambunten
+ulangan : ulang
+word : word
+excel : excel
+memperlancar : lancar
+menggerjakan : menggerjakan
+asc : asc
+timetables : timetables
+kontrak : kontrak
+menggenerate : menggenerate
+tinggal : tinggal
+menunggu : tunggu
+loading : loading
+table : table
+abstrakpertumbuhan : abstrakpertumbuhan
+berbisnis : bisnis
+aksesoris : aksesoris
+update : update
+cullen : cullen
+store : store
+sekedar : dar
+sandisk : sandisk
+gb : gb
+afrizar : afrizar
+lampau : lampau
+statistika : statistika
+penjualanya : penjualanya
+trend : trend
+soccer : soccer
+mingguannya : minggu
+double : double
+winqsb : winqsb
+berpola : pola
+konstan : konstan
+musiman : musim
+fet : fet
+tables : tables
+starfood : starfood
+wira : wira
+bugar : bugar
+metodemoving : metodemoving
+ma : ma
+untukstudikasusdi : untukstudikasusdi
+cv : cv
+kab : kab
+abstrakpemilihan : abstrakpemilihan
+perekomendasian : rekomendasi
+akademis : akademis
+yayasan : yayasan
+sunan : sunan
+dalem : dalem
+desa : desa
+gumeno : gumeno
+ekstrakulikuler : ekstrakulikuler
+kepribadian : pribadi
+menjumlahan : jumlah
+direkomdasikan : direkomdasikan
+weigting : weigting
+rapot : rapot
+fleksibel : fleksibel
+mengganggu : ganggu
+capoeira : capoeira
+merebut : rebut
+penggemarnya : gemar
+kultur : kultur
+sportnya : sport
+eksis : eks
+zungu : zungu
+berafiliasi : afiliasi
+induknya : induk
+brasil : brasil
+zucara : zucara
+gingerbread : gingerbread
+persyaratan : syarat
+iterative : iterative
+dychotomizer : dychotomizer
+hidayatun : hidayatun
+najah : najah
+primer : primer
+kenyataannya : nyata
+uan : uan
+gammu : gam
+mengimplementasikannya : implementasi
+terpendek : pendek
+jalannya : jalan
+menyebar : sebar
+snp : snp
+spm : spm
+css : css
+leaflet : leaflet
+perkecamatan : camat
+quisioner : quisioner
+alphanumeric : alphanumeric
+massage : massage
+konsumsi : konsumsi
+genggam : genggam
+simas : simas
+diskomunikasi : diskomunikasi
+walimurid : walimurid
+menyuplai : suplai
+menderita : derita
+terkena : kena
+hough : hough
+optic : optic
+disc : disc
+homomorphic : homomorphic
+menormalkan : normal
+kecerahan : cerah
+inspire : inspire
+iowa : iowa
+normative : normative
+diameters : diameters
+mdd : mdd
+seconds : seconds
+foreground : foreground
+memisahkannya : pisah
+cleaning : cleaning
+dikonversi : konversi
+invert : invert
+morphology : morphology
+weizmann : weizmann
+segmentation : segmentation
+belakangnya : belakang
+entropi : entropi
+regionprops : regionprops
+pengucapannya : ucap
+permulaan : mula
+suku : suku
+algoritme : algoritme
+fsa : fsa
+automata : automata
+penyampai : sampai
+berjenis : jenis
+adventure : adventure
+contruct : contruct
+pengamanan : aman
+watermarking : watermarking
+significant : significant
+lsb : lsb
+mengganti : ganti
+watermark : watermark
+hilang : hilang
+kompresi : kompresi
+kanal : kanal
+cover : cover
+busy : busy
+penyisipan : sisip
+biru : biru
+terwatermark : watermark
+peak : peak
+signal : signal
+jpg : jpg
+rekapitulasi : rekapitulasi
+publikasi : publikasi
+difungsikan : fungsi
+penyeleksi : seleksi
+technology : technology
+detailed : detailed
+representation : representation
+contractor : contractor
+functioning : functioning
+komparasi : komparasi
+pegenalan : pegenalan
+fisherface : fisherface
+manufaktur : manufaktur
+manufacturing : manufacturing
+penelititan : titit
+pengawas : awas
+motion : motion
+mengisolasi : isolasi
+yg : yg
+subtraction : subtraction
+static : static
+benchmart : benchmart
+bootstrap : bootstrap
+camouflage : camouflage
+movedobject : movedobject
+foregroundaperture : foregroundaperture
+timeofday : timeofday
+lightswitch : lightswitch
+wavingtrees : wavingtrees
+presentasi : presentasi
+abstrakpada : abstrakpada
+berliku : liku
+liku : liku
+imajinasi : imajinasi
+ketertarikan : tari
+terancam : ancam
+punah : punah
+dialek : dialek
+pengkonversian : konversi
+intonasi : intonasi
+semestinya : mesti
+pembengkakan : bengkak
+biayatransportasi : biayatransportasi
+mapsmampu : mapsmampu
+melacak : lacak
+darijaringan : darijaringan
+trafiknya : trafiknya
+tidakberfungsi : tidakberfungsi
+dikembangkkan : dikembangkkan
+locationbased : locationbased
+lbs : lbs
+koordinatdisisi : koordinatdisisi
+diproyeksikan : proyeksi
+dibangunmenggunakan : dibangunmenggunakan
+mampumemonitoring : mampumemonitoring
+menekankan : tekan
+digunakannya : guna
+date : date
+pengunjung : unjung
+penemuan : temu
+similarityuntuk : similarityuntuk
+preedefined : preedefined
+neighbour : neighbour
+caching : caching
+terhadapdokumen : terhadapdokumen
+dikembalikan : kembali
+cache : cache
+paragraf : paragraf
+mempersingkat : singkat
+proes : proes
+cachemenjadikan : cachemenjadikan
+mili : mil
+similaity : similaity
+islam : islam
+qur : qur
+shalat : shalat
+terpasang : pasang
+mengimplementasilkan : mengimplementasilkan
+mempermudahkan : mudah
+diakumulasikan : akumulasi
+diakhir : akhir
+badge : badge
+berisikan : risi
+jpeg : jpeg
+kontra : kontra
+pantangan : pantang
+diatas : atas
+harapannya : harap
+manasik : manasik
+umrah : umrah
+gambaran : gambar
+ibadah : ibadah
+pemorograman : pemorograman
+actionscript : actionscript
+rukun : rukun
+sunnah : sunnah
+hadiahnya : hadiah
+kejutan : kejut
+permukaan : muka
+letaknya : letak
+bertentangan : tentang
+lensa : lensa
+diamati : amat
+kurva : kurva
+berhenti : henti
+spesialis : spesialis
+discnya : discnya
+sensitivitas : sensitivitas
+spesifitas : spesifitas
+dipenuhi : penuh
+diwajibkan : wajib
+penjurusan : jurus
+respons : respons
+peminatannya : minat
+ipa : ipa
+perpustakaan : pustaka
+peminjaman : pinjam
+pinjam : pinjam
+kampus : kampus
+location : location
+menggambarkannya : gambar
+geotagging : geotagging
+pengontrolan : kontrol
+terekam : rekam
+streaming : streaming
+dilokasi : lokasi
+diintregasikan : diintregasikan
+dikontrol : kontrol
+mikrokontroler : mikrokontroler
+arduino : arduino
+pegujian : pegujian
+furps : furps
+usability : usability
+reliability : reliability
+supportability : supportability
+menit : menit
+enveronment : enveronment
+diwarnai : warna
+juni : juni
+kemarin : kemarin
+persis : persis
+kbm : kbm
+ditiadakan : tiada
+diganti : ganti
+mipa : mipa
+rapor : rapor
+iq : iq
+bk : bk
+eror : eror
+precissionnya : precissionnya
+recallnya : recallnya
+accuracynya : accuracynya
+pembiayaan : biaya
+khususkan : khusus
+komplikasi : komplikasi
+mellitus : mellitus
+mikro : mikro
+microvascular : microvascular
+od : od
+diawali : awal
+interest : interest
+kontur : kontur
+spesifisitas : spesifisitas
+ujung : ujung
+pls : pls
+programnya : program
+dipecahkan : pecah
+pgrouting : pgrouting
+geospasial : geospasial
+postgresql : postgresql
+postgis : postgis
+routing : routing
+prosedural : prosedural
+pg : pg
+plsql : plsql
+diajarkan : ajar
+tergolong : golong
+belia : belia
+menyerap : serap
+bersemangat : semangat
+fonik : fonik
+komunikatif : komunikatif
+mengajarkan : ajar
+mendengarkan : dengar
+prafonik : prafonik
+u : u
+o : o
+dicegah : cegah
+diperjelas : jelas
+komoditas : komoditas
+strategis : strategis
+perairan : air
+selat : selat
+emas : emas
+tambak : tambak
+petambak : tambak
+ekonomis : ekonomis
+penumbuhan : tumbuh
+komoditi : komoditi
+site : site
+selection : selection
+pdo : pdo
+dipungkiri : dipungkiri
+shooting : shooting
+star : star
+webgis : webgis
+mapquest : mapquest
+quantumgis : quantumgis
+digitasi : digitasi
+berarah : arah
+memafaatkan : memafaatkan
+interktif : interktif
+membimbing : bimbing
+pembelajaraninteraktif : pembelajaraninteraktif
+man : man
+memakan : makan
+mts : mts
+psikologi : psikologi
+smater : smater
+membobotkan : bobot
+roc : roc
+kompetensi : kompetensi
+gap : gap
+fungsinya : fungsi
+tekanan : tekan
+kanker : kanker
+perdarahan : darah
+ringan : ringan
+diobati : obat
+derivative : derivative
+tophat : tophat
+hadits : hadits
+sahih : sahih
+bersumber : sumber
+kitab : kitab
+bukhari : bukhari
+muslim : muslim
+pembatasan : batas
+pelaporan : lapor
+melaporkan : lapor
+pertanggung : tanggung
+hilangnya : hilang
+tertata : tata
+pengarsipan : arsip
+kader : kader
+dokumentasi : dokumentasi
+tesedia : tesedia
+pertanggungjawaban : pertanggungjawaban
+ketahun : tahun
+lowongan : lowong
+disnakertrans : disnakertrans
+bentukan : bentuk
+menampung : tampung
+belah : belah
+dicantumkan : cantum
+selesai : selesai
+mengirim : kirim
+mentoring : mentoring
+pembinaan : bina
+pengajian : aji
+pekan : pekan
+didampingi : damping
+mentor : mentor
+pembimbing : bimbing
+diranking : diranking
+dimodelkan : model
+potentially : potentially
+all : all
+pairwise : pairwise
+rangking : rangking
+possible : possible
+alternatives : alternatives
+paprika : paprika
+bidikmisi : bidikmisi
+penyeleksiannya : seleksi
+kategorikal : kategorikal
+unversitas : unversitas
+kebun : kebun
+pengalihan : alih
+ipk : ipk
+sedangakan : sedangakan
+diberdayakan : daya
+koperasi : koperasi
+umkm : umkm
+pemberdayaan : daya
+measurement : measurement
+ipms : ipms
+requirement : requirement
+investor : investor
+peri : peri
+mei : mei
+berurut : urut
+diperhitungkan : hitung
+kemunduran : mundur
+fasilitator : fasilitator
+modal : modal
+zona : zona
+pencapian : pencapian
+pencapain : pencapain
+indiators : indiators
+swot : swot
+menguntungkan : untung
+maret : maret
+ancaman : ancam
+sekaran : sekar
+adiwiyata : adiwiyata
+alumninya : alumni
+student : student
+lifecycle : lifecycle
+keaktifan : aktif
+administration : administration
+event : event
+planing : planing
+study : study
+dipercaya : percaya
+histori : histori
+stake : stake
+holder : holder
+periodenya : periode
+dituangkan : tuang
+weight : weight
+pembelajarn : pembelajarn
+ipd : ipd
+bernyanyi : nyanyi
+nyanyian : nyanyi
+dimakan : makan
+sajian : saji
+sifatnya : sifat
+sisanya : sisa
+terbantu : bantu
+benyanyi : benyanyi
+tekhnologi : tekhnologi
+diera : era
+iqra : iqra
+hijaiyah : hijaiyah
+membacanya : baca
+harokat : harokat
+tpq : tpq
+geme : geme
+menghambat : hambat
+staf : staf
+mengelola : kelola
+agile : agile
+django : django
+portability : portability
+maintainability : maintainability
+extra : extra
+kurikuler : kurikuler
+adminstrasi : adminstrasi
+obyektifitas : obyektifitas
+responde : responde
+terehadap : terehadap
+subsistem : subsistem
+efesien : efesien
+skp : skp
+tanggung : tanggung
+wewenangannya : wewenangannya
+kewajiban : wajib
+tri : tri
+dharma : dharma
+realisasi : realisasi
+memberitahukan : memberitahukan
+tercapai : capai
+cari : cari
+energi : energi
+menghasil : hasil
+dilkakukan : dilkakukan
+dekomposisi : dekomposisi
+pembulatan : bulat
+desimal : desimal
+subband : subband
+pornografi : pornografi
+mengkhawatirkan : khawatir
+dewasa : dewasa
+ironisnya : ironis
+memprihatikan : memprihatikan
+tingkatkan : tingkat
+squid : squid
+keylogger : keylogger
+pengetikan : keti
+mengkombinasikan : kombinasi
+tablet : tablet
+agent : agent
+notification : notification
+scanning : scanning
+nmap : nmap
+superscan : superscan
+injection : injection
+havij : havij
+nikto : nikto
+sarjana : sarjana
+berkala : kala
+ban : ban
+borang : borang
+sebaran : sebar
+sebentar : sebentar
+datanya : data
+pangkalan : pangkal
+pencaharian : cahari
+sebagaian : bagai
+produsen : produsen
+jalankan : jalan
+miliki : milik
+intelligent : intelligent
+businnes : businnes
+preferensi : preferensi
+impian : impi
+disetiap : tiap
+tsukamoto : tsukamoto
+psikotes : psikotes
+memutuskan : putus
+penginputan : penginputan
+lenteng : lenteng
+siswinya : siswi
+merangking : rangking
+dirangking : rangking
+ranking : ranking
+sentiment : sentiment
+komputasional : komputasional
+diekspresikan : ekspresi
+tekstual : tekstual
+tingginya : tinggi
+pengklasifikasiannya : klasifikasi
+nominal : nominal
+tweets : tweets
+sentimennya : sentimen
+laboratorium : laboratorium
+mempersulit : sulit
+klastering : klastering
+lapisan : lapis
+computation : computation
+intelegence : intelegence
+menyia : sia
+nyiakan : nyiakan
+perancanaan : perancanaan
+dihadapkan : hadap
+tersebuat : buat
+ketidakmampuan : ketidakmampuan
+mengimbangi : imbang
+pipa : pipa
+kelengkapannya : lengkap
+gate : gate
+valve : valve
+lapor : lapor
+diatur : atur
+operator : operator
+menegasikan : negasi
+complement : complement
+penebalan : tebal
+pemutaran : putar
+membinerkan : biner
+diujikan : uji
+melestarikan : lestari
+penterjemah : penterjemah
+algoritm : algoritm
+berimbuhan : imbuh
+ditingkat : tingkat
+keberadaannya : ada
+retinophaty : retinophaty
+glaucoma : glaucoma
+inpire : inpire
+resized : resized
+penghalusan : halus
+unsharp : unsharp
+eliminasi : eliminasi
+tersegmentasi : segmentasi
+sensitivity : sensitivity
+dilation : dilation
+erosion : erosion
+exudate : exudate
+bercak : bercak
+preprosessing : preprosessing
+blood : blood
+vesselnya : vesselnya
+sementasi : sementasi
+sensifitas : sensifitas
+otsutresholding : otsutresholding
+databaseinspire : databaseinspire
+closing : closing
+penyandang : sandang
+disabilitas : disabilitas
+khalayak : khalayak
+translator : translator
+privasi : privasi
+kinect : kinect
+gelap : gelap
+latarbelakang : latarbelakang
+cropping : cropping
+me : me
+postur : postur
+beasiswanya : beasiswa
+synthetic : synthetic
+extent : extent
+ketentuan : tentu
+gameedukasi : gameedukasi
+pembelajran : pembelajran
+unityd : unityd
+unityengine : unityengine
+bergenre : genre
+shooter : shooter
+diarahkan : arah
+lafadz : lafadz
+menembak : tembak
+dibacakan : baca
+berserta : serta
+lafadznya : lafadznya
+islami : islami
+shootergame : shootergame
+berpermukaan : muka
+pematang : pematang
+ditanami : tanam
+palawija : palawija
+budidaya : budidaya
+udang : udang
+tersedianya : sedia
+berkelanjutan : lanjut
+pengguaan : gua
+lahana : lahana
+sebidang : bidang
+kawasan : kawasan
+pertambakan : tambak
+persawahan : sawah
+meimplementasikan : meimplementasikan
+ular : ular
+tenar : tenar
+petak : petak
+bidak : bidak
+magnet : magnet
+menghilang : hilang
+memproyeksikan : proyeksi
+seputar : putar
+pemerintahnya : perintah
+berkewajiban : wajib
+penaklukan : takluk
+setingkat : tingkat
+funngsi : funngsi
+sequared : sequared
+iii : iii
+melengkapi : lengkap
+gameplay : gameplay
+bimbingan : bimbing
+konseling : konseling
+soft : soft
+duplikasi : duplikasi
+beresiko : resiko
+ribu : ribu
+diharuskan : harus
+cumulative : cumulative
+si : si
+prodi : prodi
+dikomputerisasi : komputerisasi
+refrensi : refrensi
+personal : personal
+ditempatkan : tempat
+reward : reward
+apresiasi : apresiasi
+didtetapkan : didtetapkan
+bojonegoro : bojonegoro
+diperusahaan : usaha
+browsingnya : browsingnya
+cepatnya : cepat
+fakta : fakta
+dibangunya : dibangunya
+book : book
+menelusuri : telusur
+ketetanggaan : tetangga
+berkurang : kurang
+vikor : vikor
+objektifitas : objektifitas
+wonoayu : wonoayu
+surat : surat
+memegang : pegang
+persuratan : surat
+disposisi : disposisi
+waka : waka
+arsip : arsip
+memperlambat : lambat
+laravel : laravel
+kepelabuhanan : kepelabuhanan
+stiamak : stiamak
+barunawati : barunawati
+keuangannya : uang
+mencatatkan : catat
+dibantu : bantu
+ms : ms
+berwenang : wenang
+kuitansi : kuitansi
+bendahara : bendahara
+spp : spp
+kkn : kkn
+penggajian : gaji
+kas : kas
+pengeluaran : keluar
+pencetakan : cetak
+bulanan : bulan
+kejurusan : jurus
+elektronika : elektronika
+akuntansi : akuntansi
+penyempurnaan : sempurna
+penjaminan : jamin
+berbasi : bas
+sweb : sweb
+skrip : skrip
+scrip : scrip
+phpmyadminkata : phpmyadminkata
+penjamin : jamin
+dibuatkan : buat
+berkontribusi : kontribusi
+pembahasan : bahas
+ecv : ecv
+form : form
+kelompokan : lompok
+weights : weights
+portal : portal
+gerbang : gerbang
+starting : starting
+aktifitasnya : aktifitasnya
+integrator : integrator
+civitas : civitas
+akademika : akademika
+eksistensi : eksistensi
+musim : musim
+banjir : banjir
+heuristic : heuristic
+graph : graph
+propinsi : propinsi
+nelayan : nelayan
+pesisir : pesisir
+komunitas : komunitas
+operasional : operasional
+diimbangi : imbang
+disarankan : saran
+keterangan : terang
+blt : blt
+blsm : blsm
+tpgp : tpgp
+kwartir : kwartir
+lencana : lencana
+darma : darma
+bakti : bakti
+bertahap : tahap
+pedukung : dukung
+pancawarsa : pancawarsa
+riwayat : riwayat
+kepramukaan : pramuka
+super : super
+kwarda : kwarda
+kwarcab : kwarcab
+dilingkungan : lingkung
+televisi : televisi
+radio : radio
+dvd : dvd
+petama : petama
+dikenalkan : kenal
+resistor : resistor
+dioda : dioda
+kapasitor : kapasitor
+transistor : transistor
+paham : paham
+moodle : moodle
+opensource : opensource
+gratis : gratis
+lambang : lambang
+pengetehuan : pengetehuan
+kepentingannya : penting
+raudlatul : raudlatul
+muta : muta
+allimin : allimin
+dokumentasinya : dokumentasi
+hukum : hukum
+umat : umat
+arab : arab
+question : question
+answering : answering
+qas : qas
+ayat : ayat
+terjemah : terjemah
+diajukan : aju
+wordmatch : wordmatch
+jelek : jelek
+kepelabuhan : labuh
+urusan : urus
+berkas : berkas
+penyimpanannya : simpan
+tersentralisasi : sentralisasi
+mengintegrasi : integrasi
+khs : khs
+transkip : transkip
+absensi : absensi
+krs : krs
+membingungkan : bingung
+kategorinya : kategori
+disegala : segala
+haka : haka
+triputra : triputra
+jaya : jaya
+perkasa : perkasa
+minuman : minum
+dikota : kota
+spg : spg
+ahkir : ahkir
+dipromosikan : promosi
+pengangkatan : angkat
+jabatannya : jabat
+mencerna : cerna
+hadapi : hadap
+cms : cms
+krian : krian
+pemasangan : pasang
+jumlahnyasangat : jumlahnyasangat
+untukmengantisipasi : untukmengantisipasi
+membludaknya : membludaknya
+makaberkembanglah : makaberkembanglah
+danpembuatan : danpembuatan
+untukpengumpulan : untukpengumpulan
+informasilowongan : informasilowongan
+crawlingakan : crawlingakan
+yangdigunakan : yangdigunakan
+untukmengukur : untukmengukur
+yangdiberikan : yangdiberikan
+harusmemasukkan : harusmemasukkan
+lowonganpekerjaan : lowonganpekerjaan
+usermemasukkan : usermemasukkan
+bumn : bumn
+bumnpertamina : bumnpertamina
+cobakedua : cobakedua
+raharja : raharja
+staff : staff
+railindo : railindo
+globalkarya : globalkarya
+yaitumasing : yaitumasing
+jugaberbeda : jugaberbeda
+gramulia : gramulia
+konstruksi : konstruksi
+perkantoran : kantor
+bendungan : bendung
+waduk : waduk
+pelabuhan : labuh
+penawar : tawar
+tender : tender
+dieksekusi : eksekusi
+dugaan : duga
+perlindungan : lindung
+miskin : miskin
+kelurga : kelurga
+pkh : pkh
+terapan : terap
+mengharuskan : harus
+praktik : praktik
+dibuka : buka
+manapun : mana
+perekapan : rekap
+drupal : drupal
+panen : panen
+hama : hama
+penggerek : gerek
+batang : batang
+hawar : hawar
+daun : daun
+bakteri : bakteri
+ngengat : ngengat
+kupu : kupu
+anakan : ana
+kerjanya : kerja
+bidangnya : bidang
+mengadopsi : adopsi
+certainty : certainty
+gajala : gajala
+kepastian : pasti
+kemunculan : muncul
+punihsment : punihsment
+keriteria : keriteria
+dirugikan : rugi
+punishment : punishment
+karna : karna
+punishmen : punishmen
+merupakansalahsatuinstansipendidikan : merupakansalahsatuinstansipendidikan
+kabupatenbangkalan : kabupatenbangkalan
+selamainipencatatan : selamainipencatatan
+bangkalanmasihmenggunakansistem : bangkalanmasihmenggunakansistem
+danbelumefisien : danbelumefisien
+darisistempengolahan : darisistempengolahan
+sebelumnyaakanmenjadihambatanbagi : sebelumnyaakanmenjadihambatanbagi
+membutuhkanlayananinformasi : membutuhkanlayananinformasi
+memprmudah : memprmudah
+karema : karema
+penyusunanan : penyusunanan
+psb : psb
+silakukan : silakukan
+namunsudah : namunsudah
+kecanggihan : canggih
+pengolah : olah
+iuran : iur
+thinking : thinking
+pengganti : ganti
+mencukupi : cukup
+dinamik : dinamik
+diagram : diagram
+simpal : simpal
+kausal : kausal
+loops : loops
+pupuk : pupuk
+npk : npk
+hibrida : hibrida
+gabungan : gabung
+pengkoreksian : koreksi
+susah : susah
+mencocokan : cocok
+rabin : rabin
+karp : karp
+ratanya : rata
+mengkoreksi : koreksi
+abstrakteknologi : abstrakteknologi
+menjamur : jamur
+tiada : tiada
+henti : henti
+mengembangan : kembang
+conceptual : conceptual
+modelling : modelling
+cdm : cdm
+physical : physical
+pdm : pdm
+menuangkan : tuang
+editor : editor
+notepad : notepad
+segara : segara
+sistemkata : sistemkata
+varian : varian
+experience : experience
+levelling : levelling
+experiene : experiene
+pasaran : pasar
+platformer : platformer
+sejarah : sejarah
+heroes : heroes
+completionism : completionism
+extended : extended
+play : play
+curiousity : curiousity
+collection : collection
+simplicity : simplicity
+tempting : tempting
+challenge : challenge
+theme : theme
+attention : attention
+importance : importance
+arousal : arousal
+impressed : impressed
+enjoy : enjoy
+likert : likert
+pernyataan : nyata
+reliabel : reliabel
+cronbach : cronbach
+peringkasan : ringkas
+overload : overload
+natural : natural
+perceptron : perceptron
+slp : slp
+terbimbing : bimbing
+bias : bias
+adjectiv : adjectiv
+adverb : adverb
+diringkas : ringkas
+pawiyatan : pawiyatan
+terancang : ancang
+persatu : satu
+mebuat : mebuat
+posyandu : posyandu
+kelurahan : lurah
+kebalandono : kebalandono
+imunisasi : imunisasi
+vitamin : vitamin
+fea : fea
+kepuasaan : puasa
+teja : teja
+poli : pol
+kia : kia
+script : script
+programmer : programmer
+feaf : feaf
+merekasecara : merekasecara
+haromain : haromain
+yangmasih : yangmasih
+administasi : administasi
+membuatproses : membuatproses
+informasikeuangan : informasikeuangan
+keuangansekolah : keuangansekolah
+membantudalam : membantudalam
+fiturforecasting : fiturforecasting
+saldo : saldo
+lembagadalam : lembagadalam
+forecasting : forecasting
+dikarenakanmetode : dikarenakanmetode
+hasilprediksi : hasilprediksi
+pembeyaran : pembeyaran
+telat : telat
+pemangku : mang
+eksternal : eksternal
+asosiasi : asosiasi
+profesi : profesi
+trunojoyodalam : trunojoyodalam
+deskriptif : deskriptif
+pegajaran : pegajaran
+administratif : administratif
+tamu : tamu
+workshop : workshop
+dhasilkan : dhasilkan
+responeden : responeden
+save : save
+island : island
+khusunya : khusunya
+tinggalkan : tinggal
+greedy : greedy
+defense : defense
+enemy : enemy
+diserang : serang
+lolos : lolos
+tower : tower
+perengkingan : perengkingan
+rekaman : rekam
+volume : volume
+dihindari : hindar
+sayangnya : sayang
+menambang : tambang
+puskom : puskom
+rektorat : rektorat
+fisib : fisib
+beranda : beranda
+kelembaban : kelembaban
+nirkabel : nirkabel
+ber : ber
+yl : yl
+fc : fc
+terukur : ukur
+ethernet : ethernet
+shield : shield
+tampilkan : tampil
+pemantuan : mantu
+terkontrol : kontrol
+indoor : indoor
+simpangan : simpang
+plagiasi : plagiasi
+karangan : karang
+algortima : algortima
+hashing : hashing
+gelombang : gelombang
+longitudinal : longitudinal
+merambat : rambat
+zat : zat
+cair : cair
+padat : padat
+derau : derau
+kenikmatan : nikmat
+didengarkan : dengar
+reduction : reduction
+spectral : spectral
+discrete : discrete
+dft : dft
+memperbaikinya : baik
+windowing : windowing
+framing : framing
+utdallas : utdallas
+university : university
+texas : texas
+at : at
+dallas : dallas
+snr : snr
+db : db
+kritis : kritis
+mendalami : dalam
+pelajari : ajar
+ajer : ajer
+ocak : ocak
+lcm : lcm
+congruent : congruent
+pengacakan : kaca
+bhunten : bhunten
+keseharian : hari
+pasif : pasif
+tangkap : tangkap
+tebak : tebak
+ditengah : tengah
+gemar : gemar
+rela : rela
+mainkan : main
+in : in
+app : app
+purchase : purchase
+pulsa : pulsa
+ads : ads
+acommerce : acommerce
+vignette : vignette
+comic : comic
+glow : glow
+old : old
+poster : poster
+black : black
+white : white
+blur : blur
+pastel : pastel
+dipulau : pulau
+memilikibeberapa : memilikibeberapa
+manaajemen : manaajemen
+mekatronika : mekatronika
+danteknik : danteknik
+elektro : elektro
+dalammelakukan : dalammelakukan
+mahasiswanya : mahasiswa
+karenadisebabkan : karenadisebabkan
+mendata : data
+sebuahsistem : sebuahsistem
+tetapterjalin : tetapterjalin
+tali : tali
+silaturrahmi : silaturrahmi
+maupunsesama : maupunsesama
+mencobamerancang : mencobamerancang
+codeigniter : codeigniter
+pendataanalumni : pendataanalumni
+mempererat : erat
+besarfakultas : besarfakultas
+berbagi : bagi
+yangberkaitan : yangberkaitan
+magister : magister
+dandi : dandi
+alumniberbasis : alumniberbasis
+totalrespons : totalrespons
+konsuil : konsuil
+keselamatan : selamat
+resistansi : resistansi
+pembumian : bumi
+tataletak : tataletak
+beba : beba
+perkawatan : kawat
+denah : denah
+simbol : simbol
+pelengkap : lengkap
+penentian : penentian
+sawmetode : sawmetode
+tang : tang
+penjumlaan : penjumlaan
+ranting : ranting
+patut : patut
+disayangkan : sayang
+matangnya : matang
+dituju : tuju
+terlanjur : lanjur
+mensubsidi : subsidi
+mencatumkan : mencatumkan
+disyaratkan : syarat
+pendukkung : pendukkung
+menyekolahkan : sekolah
+mengenyam : kenyam
+kip : kip
+bsm : bsm
+torjunmerupakan : torjunmerupakan
+menjalalankan : menjalalankan
+dilakakukan : dilakakukan
+itupeneliti : itupeneliti
+adalahna : adalahna
+inidigunakan : inidigunakan
+sebanayak : sebanayak
+torjun : torjun
+pendukungkeputusan : pendukungkeputusan
+menjaring : jaring
+pmdk : pmdk
+terjamin : jamin
+sawkata : sawkata
+nasabah : nasabah
+mengajukan : aju
+kejelian : jeli
+btn : btn
+cabangbangkalanperlu : cabangbangkalanperlu
+ttempat : ttempat
+memegangasumsiakan : memegangasumsiakan
+antarfitur : antarfitur
+atributnya : atribut
+pengajuan : aju
+metodenaive : metodenaive
+terpilihnya : pilih
+presiden : presiden
+republik : republik
+crawl : crawl
+nb : nb
+syamrabu : syamrabu
+menelakukan : takuk
+abstraksaat : abstraksaat
+aka : aka
+integritas : integritas
+menerus : terus
+pemaparan : papar
+melatar : latar
+belakangi : belakang
+sytem : sytem
+olahan : olah
+cokelat : cokelat
+merabah : merabah
+pengusaha : usaha
+berfariasi : berfariasi
+selera : selera
+akantetapi : akantetapi
+pesaing : saing
+kegagalan : gagal
+utuk : utuk
+merujuk : rujuk
+inventaris : inventaris
+usahawan : usahawan
+memudahhan : memudahhan
+pencatataan : pencatataan
+benua : benua
+penilayan : penilayan
+terkumpul : kumpul
+tercapainya : capa
+anggotanya : anggota
+satuf : satuf
+actor : actor
+kerancuan : rancu
+efisisen : efisisen
+penelitiakan : penelitiakan
+keangotaan : keangotaan
+creative : creative
+club : club
+instansidinas : instansidinas
+akuratsehingga : akuratsehingga
+masalahyang : masalahyang
+informasiyang : informasiyang
+jumlahaset : jumlahaset
+manajemenyang : manajemenyang
+inidinas : inidinas
+dapatdigunakan : dapatdigunakan
+pengadaaanaset : pengadaaanaset
+penggantian : ganti
+pemeliharaanaset : pemeliharaanaset
+sisteminformasi : sisteminformasi
+upt : upt
+pendidikanyang : pendidikanyang
+inputdata : inputdata
+pendidikankecamatan : pendidikankecamatan
+babat : babat
+behavior : behavior
+boss : boss
+ordo : ordo
+mecari : mecari
+serang : serang
+ganas : ganas
+hp : hp
+lipat : lipat
+spawning : spawning
+hos : hos
+berjudul : judul
+bomb : bomb
+math : math
+scramble : scramble
+stage : stage
+drag : drag
+touch : touch
+ditarik : tarik
+tombolnya : tombol
+capacity : capacity
+capital : capital
+collateral : collateral
+condition : condition
+economy : economy
+terima : terima
+perkonomian : perkonomian
+mempertajam : tajam
+merealisasikan : realisasi
+unsupervised : unsupervised
+sesuaiuntuk : sesuaiuntuk
+klarifikasi : klarifikasi
+analytics : analytics
+visualisasikan : visualisasi
+speedometer : speedometer
+retinopati : retinopati
+permanen : permanen
+bertambahnya : tambah
+dieliminasi : eliminasi
+darahnya : darah
+original : original
+moment : moment
+grade : grade
+abstrake : abstrake
+python : python
+fleksibelnya : fleksibel
+apapun : apa
+aplikasipembelajaran : aplikasipembelajaran
+ditinjau : tinjau
+skor : skor
+ketuntasan : tuntas
+cobakelompok : cobakelompok
+tuntas : tuntas
+harkat : harkat
+martabat : martabat
+hunian : huni
+nyaman : nyaman
+developer : developer
+kosumen : kosumen
+kamar : kamar
+asrama : asrama
+penghuni : huni
+musahil : musahil
+pendamping : damping
+tertib : tertib
+mentaati : taat
+etika : etika
+mengaji : aji
+wawancara : wawancara
+keislaman : islam
+fik : fik
+puteri : puter
+putera : putera
+kesilaman : silam
+interior : interior
+keindahan : indah
+sukar : sukar
+poin : poin
+olm : olm
+learner : learner
+mevisualisasikan : mevisualisasikan
+refleksi : refleksi
+qiuz : qiuz
+uts : uts
+uas : uas
+smiley : smiley
+faces : faces
+radar : radar
+plot : plot
+kompetensinya : kompetensi
+merefleksi : refleksi
+diputuskan : putus
+putri : putri
+kedaton : kedaton
+aspal : aspal
+hotmix : hotmix
+tonase : tonase
+pemasangannya : pasang
+berpatokan : patok
+vensim : vensim
+optimis : optimis
+madiun : madiun
+melitus : melitus
+kadar : kadar
+gula : gula
+kisaran : kisar
+buta : buta
+glrlm : glrlm
+fiturnya : fiturnya
+overlay : overlay
+mengeliminasi : eliminasi
+messidor : messidor
+methode : methode
+evaluate : evaluate
+indexing : indexing
+techniques : techniques
+ophtamology : ophtamology
+terklasifikasi : klasifikasi
+dikeluhkan : keluh
+berlubang : lubang
+serius : serius
+timbulnya : timbul
+pulpa : pulpa
+rongga : rongga
+disembuhkan : sembuh
+mulut : mulut
+mahal : mahal
+penyembuhannya : sembuh
+dempster : dempster
+shafer : shafer
+penyakitnya : sakit
+diabetik : diabetik
+menggolongkan : golong
+poliferative : poliferative
+pdr : pdr
+npdr : npdr
+macular : macular
+edema : edema
+messidore : messidore
+fasenya : fase
+neighbhor : neighbhor
+penilaiannya : nilai
+bkn : bkn
+product : product
+prakteknya : praktek
+lemak : lemak
+protein : protein
+eksudat : eksudat
+ditempelkan : tempel
+simplify : simplify
+penyederhanaan : sederhana
+ecludian : ecludian
+distances : distances
+refreshing : refreshing
+runner : runner
+kinectwrapper : kinectwrapper
+xbox : xbox
+kaos : kaos
+celana : celana
+berkeringat : keringat
+disuguhkan : suguh
+namu : namu
+menujukkan : menujukkan
+tertantang : tantang
+kemampuanya : kemampuanya
+gamification : gamification
+quiz : quiz
+diimplementasikanya : diimplementasikanya
+mvc : mvc
+controller : controller
+ditekankan : tekan
+menuntun : tuntun
+pikir : pikir
+atletik : atletik
+dilombakan : lomba
+lari : lari
+lompat : lompat
+lempar : lempar
+naungan : naung
+persatuan : satu
+pasi : pasi
+pelatih : latih
+didiknya : didik
+menghasikan : menghasikan
+abstraksalah : abstraksalah
+mikroneurisma : mikroneurisma
+hemorrhages : hemorrhages
+excudets : excudets
+neovascularos : neovascularos
+fiture : fiture
+ekstrasi : ekstrasi
+cooccurence : cooccurence
+max : max
+probability : probability
+energy : energy
+autocorrelation : autocorrelation
+homogeneity : homogeneity
+retinopahty : retinopahty
+tif : tif
+enhancement : enhancement
+differential : differential
+dmp : dmp
+element : element
+delta : delta
+daerahod : daerahod
+stretchingserta : stretchingserta
+penghilangan : hilang
+roi : roi
+lingkaran : lingkar
+mengggunakan : mengggunakan
+avr : avr
+xl : xl
+axiata : axiata
+berperprestasi : prestasi
+mendasari : dasar
+bsnp : bsnp
+indepeden : indepeden
+pelakasanaan : pelakasanaan
+paud : paud
+terdaftar : daftar
+mengawasi : awas
+kivy : kivy
+raket : raket
+badminton : badminton
+kekurangannya : kurang
+atlet : atlet
+kebingungan : bingung
+fleksibilitas : fleksibilitas
+grip : grip
+rengangan : rengangan
+senar : senar
+visekriterijumska : visekriterijumska
+optimizacija : optimizacija
+kompromisno : kompromisno
+resenje : resenje
+peringkat : peringkat
+memilihkan : pilih
+meggunakan : meggunakan
+menganggarkan : anggar
+fasilitasnya : fasilitas
+sasarannya : sasar
+diurutkan : urut
+inference : inference
+magiq : magiq
+essay : essay
+mengulang : ulang
+winnowig : winnowig
+penghilangkan : hilang
+pademawu : pademawu
+sehinggan : sehinggan
+pemasalah : masa
+perpipaan : pipa
+fisi : fisi
+water : water
+losses : losses
+dilakukanlah : laku
+berdarkan : dar
+diameter : diameter
+perbulanya : perbulanya
+debit : debit
+blk : blk
+instrument : instrument
+mentransfer : transfer
+etos : etos
+setara : tara
+sltp : sltp
+smayang : smayang
+keahliannya : ahli
+tekuni : tekun
+diterapkannya : terap
+penjajahan : jajah
+belanda : belanda
+kerajaan : raja
+ramah : ramah
+bersahabat : sahabat
+acceptance : acceptance
+tam : tam
+verdina : verdina
+apriliana : apriliana
+elfa : elfa
+sari : sari
+andharini : andharini
+dwi : dwi
+kom : kom
+kompembimbing : kompembimbing
+rika : rika
+yunitarini : yunitarini
+abstrakmedia : abstrakmedia
+list : list
+structural : structural
+sem : sem
+konfirmatori : konfirmatori
+aktualisasi : aktualisasi
+variabilitas : variabilitas
+dikategorikan : kategori
+penyelarasandunia : penyelarasandunia
+nurul : nurul
+huriyah : huriyah
+achmad : achmad
+jauhari : jauhari
+st : st
+sigit : sigit
+susanto : susanto
+p : p
+abstrakpendidikan : abstrakpendidikan
+kepribadiaan : kepribadiaan
+digunaan : guna
+dilanjutan : lanjut
+causal : causal
+penyelarasaan : penyelarasaan
+meningkatan : tingkat
+quran : quran
+wafa : wafa
+asosiatif : asosiatif
+imajinatif : imajinatif
+trainer : trainer
+sdit : sdit
+ulil : ulil
+albab : albab
+dm : dm
+kencing : kencing
+dianjurkan : anjur
+dalamsisteminimenggunakanmetode : dalamsisteminimenggunakanmetode
+kelompoknya : kelompok
+dimunculkan : muncul
+takaran : takar
+diketahuinilaiakurasi : diketahuinilaiakurasi
+retinopatipenyakit : retinopatipenyakit
+terganggu : ganggu
+menyebakan : seba
+pemeriksaan : periksa
+methods : methods
+evaluating : evaluating
+dedicated : dedicated
+ophthalmology : ophthalmology
+outranking : outranking
+generator : generator
+skalabilitas : skalabilitas
+maintainabilitas : maintainabilitas
+command : command
+behavioral : behavioral
+undo : undo
+redo : redo
+subclass : subclass
+superclass : superclass
+perkuliahan : kuliah
+bertanggungjawab : bertanggungjawab
+recruitment : recruitment
+live : live
+elabilitas : elabilitas
+kesemua : semua
+robert : robert
+johnson : johnson
+klustering : klustering
+menyoroti : sorot
+termonitor : monitor
+butuh : butuh
+logistic : logistic
+b : b
+exp : exp
+trisna : trisna
+art : art
+logit : logit
+menyentuh : sentuh
+meningkatkannya : tingkat
+mendampingi : damping
+mb : mb
+terbiasa : biasa
+literasi : literasi
+dihafalkan : hafal
+peluru : peluru
+menghafalkan : hafal
+division : division
+help : help
+out : out
+terburuknya : buruk
+sidang : sidang
+pendaftatr : pendaftatr
+penguji : uji
+penalti : penalti
+menjumlah : jumlah
+crossover : crossover
+mutasi : mutasi
+rabu : rabu
+agustus : agustus
+ganjil : ganjil
+berkah : berkah
+disyukuri : syukur
+melimpahnya : limpah
+perihal : perihal
+relevansinya : relevansi
+parameternya : parameter
+dipilihlah : pilih
+measurenya : measurenya
+gemari : gemar
+kelebihannya : lebih
+keinginannya : ingin
+dirancanglah : rancang
+menenetukan : menenetukan
+dibina : bina
+produc : produc
+pelaku : laku
+penggolongan : golong
+kiid : kiid
+ovop : ovop
+ik : ik
+xii : xii
+didesain : desain
+revisi : revisi
+lengkapnya : lengkap
+konseli : konseli
+konselor : konselor
+diminimalisir : diminimalisir
+terkomputasi : terkomputasi
+dpa : dpa
+disahkan : sah
+npd : npd
+rekap : rekap
+mengelolah : elo
+dicetak : cetak
+melaksanakannya : laksana
+pondok : pondok
+pesantren : pesantren
+hikam : hikam
+tunjung : tunjung
+pengintegrasian : integrasi
+fremwork : fremwork
+sqlyog : sqlyog
+diharaapkan : diharaapkan
+digolongkan : golong
+moderate : moderate
+proliferative : proliferative
+severe : severe
+prepocessing : prepocessing
+dikenai : kena
+hybrid : hybrid
+saraf : saraf
+rerata : rerata
+turur : turur
+megirimkan : megirimkan
+instant : instant
+messenger : messenger
+whatsapp : whatsapp
+pesannya : pesan
+percakapan : cakap
+kriptografi : kriptografi
+karakternya : karakter
+pertambahan : tambah
+diguankan : diguankan
+shannon : shannon
+fano : fano
+merupkan : merupkan
+syimbolwise : syimbolwise
+dikompresi : kompresi
+avalanche : avalanche
+effect : effect
+brute : brute
+force : force
+saving : saving
+malo : malo
+konsepnya : konsep
+komputasinya : komputasinya
+alternat : alternat
+miftahul : miftahul
+ulum : ulum
+bettet : bettet
+prmasalahan : prmasalahan
+jugak : jugak
+indek : indek
+rangkingnya : rangking
+kekhasan : khas
+motif : motif
+menglasifikasi : menglasifikasi
+dalan : dal
+sekolahan : sekolah
+adanhya : adanhya
+dicanangkan : canang
+pelopor : pelopor
+melaksanan : melaksanan
+pilahan : pilah
+kembangkan : kembang
+preproceesing : preproceesing
+preprpocessing : preprpocessing
+pjj : pjj
+individual : individual
+cscl : cscl
+supported : supported
+kebersamaan : sama
+forum : forum
+diskusi : diskusi
+mengunduh : unduh
+unduh : unduh
+membiasakan : biasa
+berdiskusi : diskus
+range : range
+kejahatan : jahat
+pengadilan : adil
+mengadili : adil
+bersalah : salah
+persidangan : sidang
+hadir : hadir
+diharap : harap
+bulannya : bulan
+komprehensif : komprehensif
+nidhomiyah : nidhomiyah
+inputkan : inputkan
+keceptan : keceptan
+megabyte : megabyte
+leukimia : leukimia
+darahputih : darahputih
+berlebih : lebih
+cbc : cbc
+completeblood : completeblood
+cell : cell
+count : count
+blast : blast
+prosedurpemeriksaan : prosedurpemeriksaan
+catatan : catat
+danmembutuhkan : danmembutuhkan
+menyedikankeperluan : menyedikankeperluan
+leukemia : leukemia
+berdasarkanpengujian : berdasarkanpengujian
+disemir : semir
+menggunakanmikroskop : menggunakanmikroskop
+wbc : wbc
+whiteblood : whiteblood
+jenisacute : jenisacute
+lymphoblastic : lymphoblastic
+bayesberdasarkan : bayesberdasarkan
+terdiridari : terdiridari
+limfoblastik : limfoblastik
+palingmaksimal : palingmaksimal
+complete : complete
+acute : acute
+mendongkrak : dongkrak
+tumbuhnya : tumbuh
+wirausaha : wirausaha
+rumitnya : rumit
+birokrasi : birokrasi
+mengurus : urus
+siup : siup
+karenakan : karena
+buruknya : buruk
+perijinan : perijinan
+buatkan : buat
+menerbitkan : terbit
+sumsum : sumsum
+effisennya : effisennya
+penelitihan : penelitihan
+pembuktian : bukti
+menyita : sita
+informasinya : informasi
+merekapan : rekap
+abstrakpembinaan : abstrakpembinaan
+bulutangkis : bulutangkis
+menyamai : sama
+pendahulu : dahulu
+pbsi : pbsi
+perwakilan : wakil
+kekalahan : kalah
+dibabak : babak
+penyisihan : sisih
+smart : smart
+produltif : produltif
+cirinya : ciri
+discreet : discreet
+dct : dct
+fold : fold
+didukungnya : dukung
+dibicarakan : bicara
+hukuman : hukum
+kebiri : kebiri
+rancanagn : rancanagn
+komentar : komentar
+antri : antri
+memesan : mes
+restoran : restoran
+pesanan : pesan
+dikertas : kertas
+disebuah : buah
+dimudahkan : mudah
+pelayan : layan
+kosa : kosa
+berminat : minat
+addie : addie
+analisys : analisys
+implementation : implementation
+evaluation : evaluation
+hafalan : hafal
+edukator : edukator
+mencantumkan : cantum
+intuisi : intuisi
+bermaksut : bermaksut
+plagiarism : plagiarism
+mosaik : mosaik
+rataan : rata
+kpri : kpri
+husada : husada
+pengkreditan : kredit
+kreditur : kreditur
+angsuran : angsur
+piutang : piutang
+office : office
+ketua : ketua
+pda : pda
+pengkategorian : kategori
+cai : cai
+tresna : tresna
+tercatat : catat
+tertimbun : timbun
+danpengetahuan : danpengetahuan
+memanfatkan : memanfatkan
+produkdengan : produkdengan
+assosiation : assosiation
+kaitan : kait
+menentu : tentu
+mempengauhi : mempengauhi
+meningkatakan : meningkatakan
+optimistic : optimistic
+sekenario : sekenario
+geo : geo
+membrane : membrane
+profiling : profiling
+mengekstrak : ekstrak
+kecenderungan : cenderung
+discovery : discovery
+kdd : kdd
+identik : identik
+penggalian : gali
+tersusun : susun
+rapi : rapi
+cutomer : cutomer
+berbelanja : belanja
+kecendrungan : kecendrungan
+gejeh : gejeh
+kerreng : kerreng
+manok : manok
+master : master
+plan : plan
+mojokerto : mojokerto
+skpd : skpd
+capaian : capai
+score : score
+trrafic : trrafic
+jagalan : jagal
+membuhkan : membuhkan
+menjelajah : jelajah
+andromax : andromax
+r : r
+gyroscope : gyroscope
+museum : museum
+cakraningrat : cakraningrat
+keajaan : aja
+dideretan : deret
+jl : jl
+soekarno : soekarno
+hatta : hatta
+koleksi : koleksi
+blender : blender
+cakranigrat : cakranigrat
+sepertidiabetes : sepertidiabetes
+glukoma : glukoma
+signifikandi : signifikandi
+ophthalmologis : ophthalmologis
+dalamjangka : dalamjangka
+automasi : automasi
+memberikankemudahan : memberikankemudahan
+secaramanual : secaramanual
+nervehead : nervehead
+onh : onh
+matematis : matematis
+dantransformasi : dantransformasi
+beberapatahapan : beberapatahapan
+contrastenhancement : contrastenhancement
+lce : lce
+padachannel : padachannel
+dalamproses : dalamproses
+rangkaianoperasi : rangkaianoperasi
+odyang : odyang
+divoting : voting
+marking : marking
+denganmengambil : denganmengambil
+penelitianmenggunakan : penelitianmenggunakan
+darikombinasi : darikombinasi
+nerve : nerve
+morfologimatematis : morfologimatematis
+caption : caption
+subjektf : subjektf
+mengartikan : arti
+dperbandingkan : dperbandingkan
+instensitas : instensitas
+eulidean : eulidean
+wang : wang
+berdasakan : dasa
+penangannya : nang
+transfusi : transfusi
+kematian : mati
+donor : donor
+atupun : atupun
+disumbangkan : sumbang
+pendonor : donor
+setia : setia
+loptap : loptap
+basiss : basiss
+xamppkata : xamppkata
+menentukankeberhasilan : menentukankeberhasilan
+adalahdata : adalahdata
+induk : induk
+dandata : dandata
+olap : olap
+on : on
+etl : etl
+extract : extract
+broser : broser
+sehinggakualitas : sehinggakualitas
+gurutelah : gurutelah
+terlaksana : laksana
+dantenaga : dantenaga
+denganmetode : denganmetode
+sebagaimetode : sebagaimetode
+kebutuhansetiap : kebutuhansetiap
+memungkinkanpenambahan : memungkinkanpenambahan
+dilakukandengan : dilakukandengan
+kinerjaguru : kinerjaguru
+alternatifsehingga : alternatifsehingga
+yangberarti : yangberarti
+lightkuning : lightkuning
+ujiobjektifitas : ujiobjektifitas
+daripengolahan : daripengolahan
+bahwapengguna : bahwapengguna
+baikterhadap : baikterhadap
+tingkatakurasi : tingkatakurasi
+kesenjangan : senjang
+kesigapan : sigap
+kontinuitas : kontinuitas
+kesempatan : sempat
+pemimpin : pimpin
+bawahan : bawah
+sanksi : sanksi
+profesionalisme : profesionalisme
+menjalin : jalin
+adjacency : adjacency
+geodesic : geodesic
+matriksnya : matriks
+multidimensional : multidimensional
+scaling : scaling
+mds : mds
+diklasterisasi : diklasterisasi
+vertex : vertex
+purity : purity
+codeingniter : codeingniter
+frameworknya : frameworknya
+kemudahaan : kemudahaan
+grafdapat : grafdapat
 kelompokkecil : kelompokkecil
 dimensionalscaling : dimensionalscaling
 datasecara : datasecara
@@ -3177,7 +6218,7 @@ pretrained : pretrained
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "4d913354c3834bc2a418bb3184589bc5"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "77cab2d630ce44dda52ace27ab9e53be"}</script></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -3210,7 +6251,7 @@ Name: stemming, Length: 810, dtype: object
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-c964bdc9-07e6-486e-9417-cf7abea6a9b8">
+  <div id="df-683c4b5b-7b4d-420e-b709-813ce6994aa9">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -3506,7 +6547,7 @@ Name: stemming, Length: 810, dtype: object
   </tbody>
 </table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-c964bdc9-07e6-486e-9417-cf7abea6a9b8')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-683c4b5b-7b4d-420e-b709-813ce6994aa9')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
         
@@ -3557,12 +6598,12 @@ Name: stemming, Length: 810, dtype: object
 
       <script>
         const buttonEl =
-          document.querySelector('#df-c964bdc9-07e6-486e-9417-cf7abea6a9b8 button.colab-df-convert');
+          document.querySelector('#df-683c4b5b-7b4d-420e-b709-813ce6994aa9 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-c964bdc9-07e6-486e-9417-cf7abea6a9b8');
+          const element = document.querySelector('#df-683c4b5b-7b4d-420e-b709-813ce6994aa9');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -3632,8 +6673,8 @@ Name: stemming, Length: 810, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cosine similarity between &#39;teknologi&#39; and &#39;system&#39; - CBOW :  0.9731079
-Cosine similarity between &#39;teknologi&#39; and &#39;mobile&#39; - CBOW :  0.9955722
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cosine similarity between &#39;teknologi&#39; and &#39;system&#39; - CBOW :  0.9637332
+Cosine similarity between &#39;teknologi&#39; and &#39;mobile&#39; - CBOW :  0.9952543
 </pre></div>
 </div>
 </div>
@@ -3647,16 +6688,1516 @@ Cosine similarity between &#39;teknologi&#39; and &#39;mobile&#39; - CBOW :  0.9
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;pesat&#39;, 0.9989277720451355),
- (&#39;kembang&#39;, 0.9979795217514038),
- (&#39;reality&#39;, 0.9961045384407043),
- (&#39;mobile&#39;, 0.9955722689628601),
- (&#39;augmented&#39;, 0.995267927646637),
- (&#39;didik&#39;, 0.9948442578315735),
- (&#39;salah&#39;, 0.9946946501731873),
- (&#39;interaktif&#39;, 0.9943239688873291),
- (&#39;satu&#39;, 0.9939070343971252),
- (&#39;edukasi&#39;, 0.9932870268821716)]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;pesat&#39;, 0.9989176988601685),
+ (&#39;kembang&#39;, 0.9979609251022339),
+ (&#39;mobile&#39;, 0.9952542185783386),
+ (&#39;interaktif&#39;, 0.9942145943641663),
+ (&#39;reality&#39;, 0.9932417273521423),
+ (&#39;edukasi&#39;, 0.9931755065917969),
+ (&#39;game&#39;, 0.9924399852752686),
+ (&#39;media&#39;, 0.9922033548355103),
+ (&#39;didik&#39;, 0.9915666580200195),
+ (&#39;salah&#39;, 0.9903269410133362)]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="tf-idf">
+<h1>TF- IDF<a class="headerlink" href="#tf-idf" title="Permalink to this heading">#</a></h1>
+<p>tf idf dengan sklearn</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># mengambil data hasil proses pre-prosessing sebelumnya untuk kategori dan text hasil stemming</span>
+<span class="n">datap</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">&quot;df.xlsx&quot;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Label&quot;</span><span class="p">,</span> <span class="s2">&quot;stemming&quot;</span><span class="p">])</span>
+<span class="n">datap</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Label&quot;</span><span class="p">,</span> <span class="s2">&quot;Abstrak&quot;</span><span class="p">]</span>
+<span class="n">datap</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-1a8ec1df-2504-478c-b94f-2ae195155ecd">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Label</th>
+      <th>Abstrak</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>RPL</td>
+      <td>['sistem', 'informasi', 'akademik', 'siakad', ...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>RPL</td>
+      <td>['jalan', 'koneksi', 'jaring', 'komputer', 'la...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>RPL</td>
+      <td>['web', 'server', 'perangkat', 'lunak', 'serve...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>komputasi</td>
+      <td>['jadwal', 'kuliah', 'guru', 'kompleks', 'masa...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>komputasi</td>
+      <td>['iring', 'kembang', 'teknologi', 'dunia', 'mu...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>805</th>
+      <td>komputasi</td>
+      <td>['investasi', 'saham', 'milik', 'resiko', 'rug...</td>
+    </tr>
+    <tr>
+      <th>806</th>
+      <td>PBA</td>
+      <td>['information', 'retrieval', 'ir', 'ambil', 'i...</td>
+    </tr>
+    <tr>
+      <th>807</th>
+      <td>komputasi</td>
+      <td>['klasifikasi', 'citra', 'proses', 'kelompok',...</td>
+    </tr>
+    <tr>
+      <th>808</th>
+      <td>komputasi</td>
+      <td>['identifikasi', 'atribut', 'pejal', 'kaki', '...</td>
+    </tr>
+    <tr>
+      <th>809</th>
+      <td>komputasi</td>
+      <td>['topik', 'deteksi', 'objek', 'tarik', 'perhat...</td>
+    </tr>
+  </tbody>
+</table>
+<p>810 rows × 2 columns</p>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-1a8ec1df-2504-478c-b94f-2ae195155ecd')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+        
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-1a8ec1df-2504-478c-b94f-2ae195155ecd button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-1a8ec1df-2504-478c-b94f-2ae195155ecd');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">datap</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(810, 2)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># join list of token as single document string</span>
+<span class="kn">import</span> <span class="nn">ast</span>
+
+<span class="k">def</span> <span class="nf">join_text_list</span><span class="p">(</span><span class="n">texts</span><span class="p">):</span>
+    <span class="n">texts</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">text</span> <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">texts</span><span class="p">])</span>
+<span class="n">datap</span><span class="p">[</span><span class="s2">&quot;text_join&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">datap</span><span class="p">[</span><span class="s2">&quot;Abstrak&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">join_text_list</span><span class="p">)</span>
+
+<span class="n">datap</span><span class="p">[</span><span class="s2">&quot;text_join&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    sistem informasi akademik siakad sistem inform...
+1    jalan koneksi jaring komputer lancar ganggu ha...
+2    web server perangkat lunak server berfungsimen...
+3    jadwal kuliah guru kompleks masalah variabel t...
+4    iring kembang teknologi dunia muncul teknologi...
+Name: text_join, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+
+<span class="c1"># banyaknya term yang akan digunakan, </span>
+<span class="c1"># di pilih berdasarkan top max_features </span>
+<span class="c1"># yang diurutkan berdasarkan term frequency seluruh corpus</span>
+<span class="n">max_features</span> <span class="o">=</span> <span class="mi">100000</span>
+
+<span class="c1"># Feature Engineering </span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;------- TF-IDF data -------&quot;</span><span class="p">)</span>
+
+<span class="n">tf_idf</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="n">max_features</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">tfidf_mat</span> <span class="o">=</span> <span class="n">tf_idf</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">datap</span><span class="p">[</span><span class="s2">&quot;text_join&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TF-IDF &quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">tfidf_mat</span><span class="p">),</span> <span class="n">tfidf_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------- TF-IDF data -------
+TF-IDF  &lt;class &#39;numpy.ndarray&#39;&gt; (810, 6437)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">terms</span> <span class="o">=</span> <span class="n">tf_idf</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span> 
+
+<span class="c1"># sum tfidf frequency of each term through documents</span>
+<span class="n">sums</span> <span class="o">=</span> <span class="n">tfidf_mat</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># connecting term to its sums frequency</span>
+<span class="n">datas</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">term</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">terms</span><span class="p">):</span>
+    <span class="n">datas</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">term</span><span class="p">,</span> <span class="n">sums</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="p">))</span>
+
+<span class="n">ranking</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">datas</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;term&#39;</span><span class="p">,</span><span class="s1">&#39;rank&#39;</span><span class="p">])</span>
+<span class="n">ranking</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;rank&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-f016d595-d192-4b41-8ee9-31ada0e343fe">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>term</th>
+      <th>rank</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2092</th>
+      <td>hasil</td>
+      <td>24.603557</td>
+    </tr>
+    <tr>
+      <th>5360</th>
+      <td>sistem</td>
+      <td>23.429335</td>
+    </tr>
+    <tr>
+      <th>3602</th>
+      <td>metode</td>
+      <td>23.353318</td>
+    </tr>
+    <tr>
+      <th>5792</th>
+      <td>teliti</td>
+      <td>22.823633</td>
+    </tr>
+    <tr>
+      <th>3846</th>
+      <td>nilai</td>
+      <td>21.438744</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1121</th>
+      <td>dalamjangka</td>
+      <td>0.129503</td>
+    </tr>
+    <tr>
+      <th>3823</th>
+      <td>nervehead</td>
+      <td>0.129503</td>
+    </tr>
+    <tr>
+      <th>3822</th>
+      <td>nerve</td>
+      <td>0.129503</td>
+    </tr>
+    <tr>
+      <th>1048</th>
+      <td>contrastenhancement</td>
+      <td>0.129503</td>
+    </tr>
+    <tr>
+      <th>1162</th>
+      <td>darikombinasi</td>
+      <td>0.129503</td>
+    </tr>
+  </tbody>
+</table>
+<p>6437 rows × 2 columns</p>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-f016d595-d192-4b41-8ee9-31ada0e343fe')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+        
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-f016d595-d192-4b41-8ee9-31ada0e343fe button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-f016d595-d192-4b41-8ee9-31ada0e343fe');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span><span class="p">,</span> <span class="n">CountVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">normalize</span>
+
+<span class="n">max_features</span> <span class="o">=</span> <span class="mi">10000</span>
+
+<span class="c1"># calc TF vector</span>
+<span class="n">cvect</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="n">max_features</span><span class="p">)</span>
+<span class="n">TF_vector</span> <span class="o">=</span> <span class="n">cvect</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">datap</span><span class="p">[</span><span class="s2">&quot;text_join&quot;</span><span class="p">])</span>
+
+<span class="c1"># normalize TF vector</span>
+<span class="n">normalized_TF_vector</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">TF_vector</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;l1&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># calc IDF</span>
+<span class="n">tfidf</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="n">max_features</span><span class="p">,</span> <span class="n">smooth_idf</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">tfs</span> <span class="o">=</span> <span class="n">tfidf</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">datap</span><span class="p">[</span><span class="s2">&quot;text_join&quot;</span><span class="p">])</span>
+<span class="n">IDF_vector</span> <span class="o">=</span> <span class="n">tfidf</span><span class="o">.</span><span class="n">idf_</span>
+
+<span class="c1"># hitung TF x IDF sehingga dihasilkan TFIDF matrix / vector</span>
+<span class="n">tfidf_mat</span> <span class="o">=</span> <span class="n">normalized_TF_vector</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">IDF_vector</span><span class="p">)</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># hasil dari tf-idf </span>
+<span class="n">dfbtf</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">tfidf_mat</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">terms</span><span class="p">])</span>
+<span class="n">dfbtf</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-533545ed-641e-4c94-b1a6-eebe2656428d">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th>aalysis</th>
+      <th>aam</th>
+      <th>abad</th>
+      <th>abadi</th>
+      <th>abai</th>
+      <th>abdi</th>
+      <th>ability</th>
+      <th>abjad</th>
+      <th>absah</th>
+      <th>absensi</th>
+      <th>...</th>
+      <th>zara</th>
+      <th>zat</th>
+      <th>zcz</th>
+      <th>zf</th>
+      <th>zona</th>
+      <th>zone</th>
+      <th>zoning</th>
+      <th>zoom</th>
+      <th>zucara</th>
+      <th>zungu</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>805</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>806</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>807</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>808</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>809</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>810 rows × 6437 columns</p>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-533545ed-641e-4c94-b1a6-eebe2656428d')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+        
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-533545ed-641e-4c94-b1a6-eebe2656428d button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-533545ed-641e-4c94-b1a6-eebe2656428d');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  </div></div>
+</div>
+<p>PCA</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># proses pca menjadi 150 fitur</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="n">pca_abstrak</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<span class="n">principalComponents_abstrak</span> <span class="o">=</span> <span class="n">pca_abstrak</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">dfbtf</span><span class="p">)</span>
+<span class="n">pca_abstrak</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">principalComponents_abstrak</span><span class="p">)</span>
+<span class="n">pca_abstrak</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-a9027ed6-a630-40f8-9f21-14022431e3db">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>...</th>
+      <th>140</th>
+      <th>141</th>
+      <th>142</th>
+      <th>143</th>
+      <th>144</th>
+      <th>145</th>
+      <th>146</th>
+      <th>147</th>
+      <th>148</th>
+      <th>149</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-0.016121</td>
+      <td>-0.071491</td>
+      <td>-0.020300</td>
+      <td>-0.033106</td>
+      <td>-0.039245</td>
+      <td>-0.033462</td>
+      <td>-0.050716</td>
+      <td>-0.033204</td>
+      <td>-0.023631</td>
+      <td>0.015197</td>
+      <td>...</td>
+      <td>-0.016293</td>
+      <td>0.067144</td>
+      <td>0.024667</td>
+      <td>0.043967</td>
+      <td>0.014105</td>
+      <td>-0.006492</td>
+      <td>-0.004423</td>
+      <td>0.024903</td>
+      <td>0.026699</td>
+      <td>-0.022432</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.006544</td>
+      <td>-0.033231</td>
+      <td>-0.029570</td>
+      <td>-0.071150</td>
+      <td>-0.020814</td>
+      <td>-0.076730</td>
+      <td>-0.039701</td>
+      <td>0.027718</td>
+      <td>0.155264</td>
+      <td>0.151093</td>
+      <td>...</td>
+      <td>0.047059</td>
+      <td>0.019453</td>
+      <td>-0.053574</td>
+      <td>-0.011731</td>
+      <td>0.016119</td>
+      <td>0.031179</td>
+      <td>0.044979</td>
+      <td>0.016522</td>
+      <td>-0.007125</td>
+      <td>-0.001668</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.010816</td>
+      <td>-0.030879</td>
+      <td>-0.063567</td>
+      <td>-0.065695</td>
+      <td>-0.088508</td>
+      <td>-0.104848</td>
+      <td>0.094472</td>
+      <td>-0.199988</td>
+      <td>0.024419</td>
+      <td>-0.003993</td>
+      <td>...</td>
+      <td>-0.025293</td>
+      <td>-0.007792</td>
+      <td>0.024500</td>
+      <td>0.020056</td>
+      <td>-0.085631</td>
+      <td>0.013841</td>
+      <td>0.014545</td>
+      <td>-0.020979</td>
+      <td>-0.008528</td>
+      <td>0.014539</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.013418</td>
+      <td>-0.045791</td>
+      <td>-0.059577</td>
+      <td>0.039544</td>
+      <td>-0.006511</td>
+      <td>-0.040963</td>
+      <td>-0.009459</td>
+      <td>-0.051001</td>
+      <td>0.282104</td>
+      <td>-0.239097</td>
+      <td>...</td>
+      <td>0.021571</td>
+      <td>0.006933</td>
+      <td>-0.016973</td>
+      <td>-0.006468</td>
+      <td>-0.008067</td>
+      <td>-0.004613</td>
+      <td>0.028426</td>
+      <td>-0.024266</td>
+      <td>-0.002361</td>
+      <td>-0.002957</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.062793</td>
+      <td>0.020746</td>
+      <td>0.020908</td>
+      <td>-0.002050</td>
+      <td>-0.010073</td>
+      <td>-0.145231</td>
+      <td>-0.039079</td>
+      <td>0.044915</td>
+      <td>0.015353</td>
+      <td>0.016524</td>
+      <td>...</td>
+      <td>-0.071128</td>
+      <td>0.011550</td>
+      <td>-0.007837</td>
+      <td>0.027151</td>
+      <td>0.047854</td>
+      <td>-0.023291</td>
+      <td>-0.012337</td>
+      <td>0.001609</td>
+      <td>-0.001545</td>
+      <td>0.002433</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>805</th>
+      <td>-0.011531</td>
+      <td>-0.016371</td>
+      <td>-0.002393</td>
+      <td>-0.009908</td>
+      <td>-0.010652</td>
+      <td>0.015705</td>
+      <td>0.027913</td>
+      <td>0.038148</td>
+      <td>0.047857</td>
+      <td>0.017469</td>
+      <td>...</td>
+      <td>0.013400</td>
+      <td>0.019487</td>
+      <td>0.020918</td>
+      <td>0.001184</td>
+      <td>-0.021005</td>
+      <td>-0.019068</td>
+      <td>-0.039667</td>
+      <td>-0.068195</td>
+      <td>-0.014716</td>
+      <td>-0.048527</td>
+    </tr>
+    <tr>
+      <th>806</th>
+      <td>-0.011578</td>
+      <td>-0.014995</td>
+      <td>-0.029984</td>
+      <td>-0.022381</td>
+      <td>-0.049151</td>
+      <td>-0.029959</td>
+      <td>0.091096</td>
+      <td>-0.117864</td>
+      <td>0.007518</td>
+      <td>-0.031479</td>
+      <td>...</td>
+      <td>0.036287</td>
+      <td>-0.003370</td>
+      <td>0.001193</td>
+      <td>-0.004560</td>
+      <td>-0.040282</td>
+      <td>0.000852</td>
+      <td>-0.049592</td>
+      <td>0.011308</td>
+      <td>0.015048</td>
+      <td>0.012936</td>
+    </tr>
+    <tr>
+      <th>807</th>
+      <td>-0.107272</td>
+      <td>0.071001</td>
+      <td>-0.009510</td>
+      <td>0.022815</td>
+      <td>-0.026488</td>
+      <td>0.007833</td>
+      <td>0.042302</td>
+      <td>0.021614</td>
+      <td>-0.009778</td>
+      <td>-0.004515</td>
+      <td>...</td>
+      <td>-0.009711</td>
+      <td>0.025179</td>
+      <td>0.023606</td>
+      <td>-0.014687</td>
+      <td>0.015213</td>
+      <td>0.027726</td>
+      <td>0.005082</td>
+      <td>0.001907</td>
+      <td>-0.014423</td>
+      <td>0.004718</td>
+    </tr>
+    <tr>
+      <th>808</th>
+      <td>-0.068405</td>
+      <td>0.039965</td>
+      <td>-0.003164</td>
+      <td>0.013549</td>
+      <td>-0.003806</td>
+      <td>0.004523</td>
+      <td>0.046369</td>
+      <td>0.036424</td>
+      <td>-0.007925</td>
+      <td>0.033360</td>
+      <td>...</td>
+      <td>-0.000140</td>
+      <td>0.023439</td>
+      <td>0.000331</td>
+      <td>-0.050483</td>
+      <td>-0.003753</td>
+      <td>-0.066317</td>
+      <td>-0.003707</td>
+      <td>-0.019599</td>
+      <td>-0.010285</td>
+      <td>0.022183</td>
+    </tr>
+    <tr>
+      <th>809</th>
+      <td>-0.039333</td>
+      <td>0.020098</td>
+      <td>0.020496</td>
+      <td>0.001418</td>
+      <td>-0.022304</td>
+      <td>-0.027652</td>
+      <td>0.014136</td>
+      <td>-0.009927</td>
+      <td>0.018073</td>
+      <td>-0.003261</td>
+      <td>...</td>
+      <td>-0.026205</td>
+      <td>-0.007996</td>
+      <td>-0.006268</td>
+      <td>-0.004499</td>
+      <td>-0.031328</td>
+      <td>0.027262</td>
+      <td>0.038493</td>
+      <td>-0.000843</td>
+      <td>0.001370</td>
+      <td>-0.048373</td>
+    </tr>
+  </tbody>
+</table>
+<p>810 rows × 150 columns</p>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-a9027ed6-a630-40f8-9f21-14022431e3db')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+        
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-a9027ed6-a630-40f8-9f21-14022431e3db button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-a9027ed6-a630-40f8-9f21-14022431e3db');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  </div></div>
+</div>
+<p>Split Data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># split tanpa PCA</span>
+<span class="n">X</span><span class="o">=</span><span class="n">dfbtf</span>
+<span class="n">y</span><span class="o">=</span><span class="n">datap</span><span class="p">[</span><span class="s1">&#39;Label&#39;</span><span class="p">]</span>
+
+<span class="n">X_train</span><span class="p">,</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_train</span><span class="p">,</span><span class="n">y_test</span><span class="o">=</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># split  PCA</span>
+<span class="n">pca_X</span><span class="o">=</span><span class="n">pca_abstrak</span>
+<span class="n">pca_y</span><span class="o">=</span><span class="n">datap</span><span class="p">[</span><span class="s1">&#39;Label&#39;</span><span class="p">]</span>
+
+<span class="n">pca_X_train</span><span class="p">,</span><span class="n">pca_X_test</span><span class="p">,</span><span class="n">pca_y_train</span><span class="p">,</span><span class="n">pca_y_test</span><span class="o">=</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">pca_X</span><span class="p">,</span><span class="n">pca_y</span><span class="p">,</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Naive Bayes</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HASIL AKURASI TANPA PCA</span>
+<span class="n">gaussian</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
+<span class="n">gaussian</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">YY_pred</span> <span class="o">=</span> <span class="n">gaussian</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">accuracy_nb</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">YY_pred</span><span class="p">)</span><span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">accuracy_nb</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>74.9
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HASIL AKURASI dengan PCA</span>
+<span class="n">pca_gaussian</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
+<span class="n">pca_gaussian</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">pca_X_train</span><span class="p">,</span> <span class="n">pca_y_train</span><span class="p">)</span>
+<span class="n">pca_Y_pred</span> <span class="o">=</span> <span class="n">pca_gaussian</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">pca_X_test</span><span class="p">)</span>
+<span class="n">accuracy_nb_pca</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">pca_y_test</span><span class="p">,</span><span class="n">pca_Y_pred</span><span class="p">)</span><span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">accuracy_nb_pca</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>69.96
+</pre></div>
+</div>
+</div>
+</div>
+<p>KNN</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HASIL AKURASI TANPA PCA</span>
+<span class="n">knn_clf</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">knn_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">knn_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="n">accuracy_KNN</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">y_pred</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">accuracy_KNN</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>74.07
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HASIL AKURASI MEMAKAI PCA</span>
+<span class="n">pca_knn_clf</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">pca_knn_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">pca_X_train</span><span class="p">,</span><span class="n">pca_y_train</span><span class="p">)</span>
+
+<span class="n">pca_y_pred</span> <span class="o">=</span> <span class="n">pca_knn_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">pca_X_test</span><span class="p">)</span>
+
+<span class="n">accuracy_KNN_pca</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">pca_y_test</span><span class="p">,</span><span class="n">pca_y_pred</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">accuracy_KNN_pca</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>80.25
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="pencarian-nilai-k-terbaik-untuk-metode-knn">
+<h2>pencarian nilai k terbaik untuk metode knn<a class="headerlink" href="#pencarian-nilai-k-terbaik-untuk-metode-knn" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pandas.core.missing</span> <span class="kn">import</span> <span class="n">mask_missing</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+
+<span class="c1"># membuat loopingan untuk mengecek score data dari data 1 sampai 500</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#menyimpan hasil score tanpa pca</span>
+<span class="n">data_pca</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#menyimpan hasil score dengan pca</span>
+<span class="n">data1</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#menyimpan data yang memiliki score terbesar tanpa pca</span>
+<span class="n">data1_pca</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#menyimpan data yang memiliki score terbesar dengan pca</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">500</span><span class="p">):</span>
+  <span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span> <span class="o">=</span> <span class="n">i</span><span class="p">)</span>
+  <span class="c1"># knn tanpa pca</span>
+  <span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+  <span class="n">y_pred</span> <span class="o">=</span> <span class="n">knn</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+  <span class="n">accuracy_KNN</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">y_pred</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+  <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accuracy_KNN</span><span class="p">)</span>
+
+  <span class="c1">#knn dengan pca</span>
+  <span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">pca_X_train</span><span class="p">,</span><span class="n">pca_y_train</span><span class="p">)</span>
+  <span class="n">pca_y_pred</span> <span class="o">=</span> <span class="n">knn</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">pca_X_test</span><span class="p">)</span>
+  <span class="n">accuracy_KNN_pca</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">pca_y_test</span><span class="p">,</span><span class="n">pca_y_pred</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+  <span class="n">data_pca</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accuracy_KNN_pca</span><span class="p">)</span>
+
+<span class="n">maksimum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">maksimum_pca</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">data_pca</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+
+  <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">maksimum</span><span class="p">:</span>
+    <span class="n">data1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">data_pca</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">maksimum_pca</span><span class="p">:</span>
+    <span class="n">data1_pca</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;nilai akurasi maksimum untuk data tanpa pca adalah : &#39;</span><span class="p">,</span><span class="n">maksimum</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;nilai k maksimum untuk data tanpa pca adalah nilai k ke- &quot;</span><span class="p">,</span><span class="n">data1</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;nilai akurasi maksimum untuk data menggunakan pca adalah : &#39;</span><span class="p">,</span><span class="n">maksimum_pca</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;nilai k maksimum untuk data menggunakan pca adalah nilai k ke-&quot;</span><span class="p">,</span><span class="n">data1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nilai akurasi maksimum untuk data tanpa pca adalah :  76.54
+nilai k maksimum untuk data tanpa pca adalah nilai k ke-  [5]
+nilai akurasi maksimum untuk data menggunakan pca adalah :  83.13
+nilai k maksimum untuk data menggunakan pca adalah nilai k ke- [5]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="pencarian-nilai-pca-terbaik">
+<h2>Pencarian nilai PCA terbaik<a class="headerlink" href="#pencarian-nilai-pca-terbaik" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_nb</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#menyimpan hasil score naive bayes</span>
+<span class="n">data_knn</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#menyimpan hasil score knn</span>
+<span class="n">data1</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#menyimpan data akurasi yang memiliki score terbesar</span>
+<span class="n">data2</span> <span class="o">=</span> <span class="p">[]</span> 
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">500</span><span class="p">):</span>
+  <span class="n">pca_abstrak</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
+  <span class="n">principalComponents_abstrak</span> <span class="o">=</span> <span class="n">pca_abstrak</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">dfbtf</span><span class="p">)</span>
+  <span class="n">pca_abstrak1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">principalComponents_abstrak</span><span class="p">)</span>
+
+  <span class="c1"># split  PCA</span>
+  <span class="n">pca_X</span><span class="o">=</span><span class="n">pca_abstrak1</span>
+  <span class="n">pca_y</span><span class="o">=</span><span class="n">datap</span><span class="p">[</span><span class="s1">&#39;Label&#39;</span><span class="p">]</span>
+  <span class="n">pca_X_train</span><span class="p">,</span><span class="n">pca_X_test</span><span class="p">,</span><span class="n">pca_y_train</span><span class="p">,</span><span class="n">pca_y_test</span><span class="o">=</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">pca_X</span><span class="p">,</span><span class="n">pca_y</span><span class="p">,</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+  <span class="c1"># HASIL AKURASI dengan PCA</span>
+  <span class="c1"># naive bayes</span>
+  <span class="n">gaussian</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
+  <span class="n">gaussian</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">pca_X_train</span><span class="p">,</span> <span class="n">pca_y_train</span><span class="p">)</span>
+  <span class="n">pca_Y_pred</span> <span class="o">=</span> <span class="n">gaussian</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">pca_X_test</span><span class="p">)</span>
+  <span class="n">accuracy_nb_pca2</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">pca_y_test</span><span class="p">,</span><span class="n">pca_Y_pred</span><span class="p">)</span><span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+  <span class="n">data_nb</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accuracy_nb_pca2</span><span class="p">)</span>
+  <span class="c1"># knn</span>
+  <span class="n">knn</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span> <span class="o">=</span> <span class="mi">9</span><span class="p">)</span>
+  <span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">pca_X_train</span><span class="p">,</span><span class="n">pca_y_train</span><span class="p">)</span>
+  <span class="n">pca_y_pred</span> <span class="o">=</span> <span class="n">knn</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">pca_X_test</span><span class="p">)</span>
+  <span class="n">accuracy_KNN_pca</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">pca_y_test</span><span class="p">,</span><span class="n">pca_y_pred</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+  <span class="n">data_knn</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accuracy_KNN_pca</span><span class="p">)</span>
+
+<span class="n">maksimum_nb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">data_nb</span><span class="p">)</span>
+<span class="n">maksimum_knn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">data_knn</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+  <span class="k">if</span> <span class="n">data_nb</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">maksimum_nb</span><span class="p">:</span>
+    <span class="n">data1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">data_knn</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">maksimum_knn</span><span class="p">:</span>
+    <span class="n">data2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;nilai akurasi naive bayes maksimum yang di dapatkan : &#39;</span><span class="p">,</span><span class="n">maksimum_nb</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;nilai pca naive bayes maksimum&quot;</span><span class="p">,</span><span class="n">data1</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;jumlah nilai pca naive bayes maksimum&quot;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">data1</span><span class="p">))</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;nilai akurasi knn maksimum yang di dapatkan : &#39;</span><span class="p">,</span><span class="n">maksimum_knn</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;jumlah nilai pca naive bayes maksimum&quot;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">data2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nilai akurasi naive bayes maksimum yang di dapatkan :  72.84
+nilai pca naive bayes maksimum [35, 84, 100]
+jumlah nilai pca naive bayes maksimum 3
+nilai akurasi knn maksimum yang di dapatkan :  84.77
+jumlah nilai pca naive bayes maksimum 1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;nilai pca knn maksimum&quot;</span><span class="p">,</span><span class="n">data2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nilai pca knn maksimum [47]
 </pre></div>
 </div>
 </div>
@@ -3724,6 +8265,11 @@ Cosine similarity between &#39;teknologi&#39; and &#39;mobile&#39; - CBOW :  0.9
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#word-embedding-word2vec-cbow">Word Embedding Word2vec CBOW</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf">TF- IDF</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pencarian-nilai-k-terbaik-untuk-metode-knn">pencarian nilai k terbaik untuk metode knn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pencarian-nilai-pca-terbaik">Pencarian nilai PCA terbaik</a></li>
 </ul>
 </li>
 </ul>
