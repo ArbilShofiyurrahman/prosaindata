@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'tugas-prosaindata/tugas3';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="NetworkxDigraph" href="tugas4.html" />
+    <link rel="next" title="UTS Proyek Sains Data" href="uts.html" />
     <link rel="prev" title="Tugas 2 : Pipeline" href="tugas2.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -163,6 +163,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="beritaOnline.html">Scrape data dari berita online (DETIK.COM)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tugas2.html">Tugas 2 : Pipeline</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Tugas 3 : Data Time Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uts.html">UTS Proyek Sains Data</a></li>
+
+
 <li class="toctree-l1"><a class="reference internal" href="tugas4.html">NetworkxDigraph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tugas5.html">Text Summarization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tugas6.html">Topic Modelling</a></li>
@@ -212,6 +215,37 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href=" https://colab.research.google.com/github/ArbilShofiyurrahman/prosaindata/blob/gh-pages/_sources/tugas-prosaindata/tugas3.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -220,7 +254,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+      <li><a href="https://github.com/ArbilShofiyurrahman/prosaindata" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -237,7 +271,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftugas-prosaindata/tugas3.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ArbilShofiyurrahman/prosaindata/issues/new?title=Issue%20on%20page%20%2Ftugas-prosaindata/tugas3.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -484,7 +518,7 @@ Shapes Y =  (142,)
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-c3752d54-4bc5-4fbb-8ee0-354318d7dcef">
+  <div id="df-c5724f86-67b5-4103-9712-2718cd12ffeb">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -580,7 +614,7 @@ Shapes Y =  (142,)
 </table>
 <p>142 rows × 3 columns</p>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-c3752d54-4bc5-4fbb-8ee0-354318d7dcef')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-c5724f86-67b5-4103-9712-2718cd12ffeb')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
         
@@ -631,12 +665,12 @@ Shapes Y =  (142,)
 
       <script>
         const buttonEl =
-          document.querySelector('#df-c3752d54-4bc5-4fbb-8ee0-354318d7dcef button.colab-df-convert');
+          document.querySelector('#df-c5724f86-67b5-4103-9712-2718cd12ffeb button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-c3752d54-4bc5-4fbb-8ee0-354318d7dcef');
+          const element = document.querySelector('#df-c5724f86-67b5-4103-9712-2718cd12ffeb');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -917,7 +951,7 @@ $<span class="math notranslate nohighlight">\( \text{MSE} = \frac{1}{n} \sum_{i=
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-906eba16-80eb-4cfb-a5e6-ed0f4d554572">
+  <div id="df-835274a3-f4b0-4439-92e8-e1fe789f0ab8">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -1090,7 +1124,7 @@ $<span class="math notranslate nohighlight">\( \text{MSE} = \frac{1}{n} \sum_{i=
   </tbody>
 </table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-906eba16-80eb-4cfb-a5e6-ed0f4d554572')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-835274a3-f4b0-4439-92e8-e1fe789f0ab8')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
         
@@ -1141,12 +1175,12 @@ $<span class="math notranslate nohighlight">\( \text{MSE} = \frac{1}{n} \sum_{i=
 
       <script>
         const buttonEl =
-          document.querySelector('#df-906eba16-80eb-4cfb-a5e6-ed0f4d554572 button.colab-df-convert');
+          document.querySelector('#df-835274a3-f4b0-4439-92e8-e1fe789f0ab8 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-906eba16-80eb-4cfb-a5e6-ed0f4d554572');
+          const element = document.querySelector('#df-835274a3-f4b0-4439-92e8-e1fe789f0ab8');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -1241,11 +1275,11 @@ $<span class="math notranslate nohighlight">\( \text{MSE} = \frac{1}{n} \sum_{i=
       </div>
     </a>
     <a class="right-next"
-       href="tugas4.html"
+       href="uts.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">NetworkxDigraph</p>
+        <p class="prev-next-title">UTS Proyek Sains Data</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
